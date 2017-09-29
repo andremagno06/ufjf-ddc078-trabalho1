@@ -5,7 +5,14 @@
  */
 package br.com.ufjf.dcc078.Action;
 
+
+
+import br.com.ufjf.dcc078.DAO.QuartoDAO;
+import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,13 +31,13 @@ public class InserirQuartoAction implements Action {
             response.sendRedirect("index.jsp");
         } else {
             try {
-                Contato contato = new Contato(nome, email);
-                ContatoDAO.getInstance().save(contato);
-                response.sendRedirect("contatoSucesso.jsp");
+                Quarto contato = new Quarto(44,"quarto 5","disponivel",1);
+                QuartoDAO.getInstance().save(contato);
+                response.sendRedirect("QuartoSalvoSucesso.jsp");
             } catch (SQLException ex) {
-                response.sendRedirect("contatoErro.jsp");
+                response.sendRedirect("ErroQuartonãoSalvo.jsp");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(GravarContatoAction.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InserirQuartoAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

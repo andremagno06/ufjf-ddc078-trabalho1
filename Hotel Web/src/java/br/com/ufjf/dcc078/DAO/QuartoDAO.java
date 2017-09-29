@@ -5,6 +5,8 @@
  */
 package br.com.ufjf.dcc078.DAO;
 
+import br.com.ufjf.dcc078.Modelo.Quarto;
+
 /**
  *
  * @author Desenvolvedor
@@ -13,9 +15,25 @@ public class QuartoDAO {
     
     private static QuartoDAO instance;
     
-    private QuartoDAO(){
-        
+
+
+    public static QuartoDAO getInstance() {
+        return instance;
     }
+
+    public static void setInstance(QuartoDAO instance) {
+        QuartoDAO.instance = instance;
+    }
+
+    public static Object getInstance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void save(Quarto contato) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
     
     
