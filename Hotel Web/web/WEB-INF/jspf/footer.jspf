@@ -1,0 +1,20 @@
+<%@ page pageEncoding="UTF-8" %>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <div class="col-lg-12" >
+                    &copy;  2017 Aspectos Avançados em Engenharia de Software | Trabalho 1 - Padrões de Projetos
+                </div>
+            </div>
+        </div>
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="assets/js/custom.js"></script>
+    </body>
+</html>
+

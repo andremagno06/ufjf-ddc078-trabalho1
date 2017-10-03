@@ -25,10 +25,6 @@ public class QuartoDAO {
         QuartoDAO.instance = instance;
     }
 
-    public static Object getInstance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void save(Quarto contato) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
