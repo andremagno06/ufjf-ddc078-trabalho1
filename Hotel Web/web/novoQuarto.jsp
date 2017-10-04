@@ -15,7 +15,21 @@
         </div>            
         <hr/>
 
-        <%--FORMULÁRIO DE QUARTOS--%>
-
+        <form>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input class="form-control" name="descricao"/>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
