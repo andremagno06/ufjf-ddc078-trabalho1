@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Lista de funcionários cadastrados
+    Document   : Lista de clientes cadastrados
     Created on : 04/10/2017, 15:22:54
     Author     : Ana Carolina Fidelis Gonçalves
                  André Magno
@@ -12,12 +12,12 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>FUNCIONÁRIOS</h2>   
+                <h2>CLIENTES</h2>   
             </div>
         </div>            
         <hr/>
-        
-        <%-- MOSTRAR TODOS OS FUNCIONÁRIOS EXISTENTES --%>
-        
+
+        <%-- MOSTRAR TODOS OS CLIENTES EXISTENTES --%>
+
     </div>
 </div>
