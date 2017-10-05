@@ -7,11 +7,13 @@ package br.com.ufjf.dcc078.DAO;
 
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  *
@@ -33,13 +35,16 @@ public class QuartoDAO {
     
     public void gravar(Quarto quarto) throws ClassNotFoundException, SQLException{
         Connection conn = null;
-        Statement st = null;
+        PreparedStatement st = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.createStatement();
+            st = conn.prepareStatement("insert into quarto (descricao, estado, tipo_quarto_id values (?, ?, ?)");
             
-            st.execute("insert into quarto (descricao, estado, tipo_quarto_id)" +
-                    " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado() +"'"+ quarto.getTipo_quarto_id()+"')");
+           st.setString(1, quarto.getDescricao());
+           st.setString(2, quarto.getEstado());
+           st.setInt(3, quarto.getTipo_quarto_id());
+           st.executeUpdate();
+           
         } catch(SQLException e) {
             throw e;
         } finally {
@@ -49,13 +54,13 @@ public class QuartoDAO {
     
    
     
-    public void excluir(String nome) throws ClassNotFoundException, SQLException{
+    public void excluir(int id) throws ClassNotFoundException, SQLException{
         Connection conn = null;
         PreparedStatement st = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("DELETE FROM quarto WHERE codigo = ?");
-            st.setString(1, nome);
+            st = conn.prepareStatement("DELETE FROM quarto WHERE id = ?");
+            st.setInt(1, id);
             st.execute();
         } catch(SQLException e) {
             throw e;
@@ -64,14 +69,14 @@ public class QuartoDAO {
         }
     }
     
-    public Quarto ler(int codigo) throws ClassNotFoundException, SQLException{
+    public Quarto ler(int id) throws ClassNotFoundException, SQLException{
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM quarto WHERE codigo = ?");
-            st.setInt(1, codigo);
+            st = conn.prepareStatement("SELECT * FROM quarto WHERE id = ?");
+            st.setInt(1, id);
             rs = st.executeQuery();
             
             if(rs.next()){
@@ -87,6 +92,33 @@ public class QuartoDAO {
             closeResources(conn, st);
         }
         return null;
+    }
+    
+    public List<Quarto> lerTodos() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs;
+        List<Quarto> quartos = new VirtualFlow.ArrayLinkedList<>();
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.prepareStatement("SELECT * FROM quarto");
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Quarto quarto = new Quarto();
+                quarto.setId(rs.getInt("id"));
+                quarto.setDescricao(rs.getString("descricao"));
+                quarto.setEstado(rs.getString("estado"));
+                quarto.setTipo_quarto_id(rs.getInt("tipo_quarto_id"));
+                quartos.add(quarto);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+            
+        }
+        return quartos;
     }
 
     private void closeResources(Connection conn, Statement st) {

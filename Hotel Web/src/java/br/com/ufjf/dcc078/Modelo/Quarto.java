@@ -27,6 +27,16 @@ public class Quarto {
         this.tipo_quarto_id = tipo_quarto_id;
     }
 
+    public Quarto() {
+    }
+
+    public Quarto(int id, String descricao, String estado, int tipo_quarto_id) {
+        this.id = id;
+        this.descricao = descricao;
+        this.estado = estado;
+        this.tipo_quarto_id = tipo_quarto_id;
+    }
+
     
 
    
