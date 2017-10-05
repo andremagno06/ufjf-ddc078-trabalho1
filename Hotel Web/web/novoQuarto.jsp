@@ -16,7 +16,7 @@
         <hr/>
 
         <h1>Cadastro de Contatos</h1>
-        <form action="FrontController?action=GravarContato" method="post">
+        <form action="FrontController?action=InserirQuarto" method="post">
             Entre com seu nome
             <input type="text" name="textNome"/><br/>
             
