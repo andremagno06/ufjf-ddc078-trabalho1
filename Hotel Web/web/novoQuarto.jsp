@@ -15,14 +15,22 @@
         </div>            
         <hr/>
 
-        <h1>Cadastro de Contatos</h1>
+        <h1>Cadastro de Quarto</h1>
         <form action="FrontController?action=InserirQuarto" method="post">
             Entre com seu nome
-            <input type="text" name="textNome"/><br/>
-            
+            <input type="text" name="textDescricao"/><br/>
+
             Entre com o tipo de quarto
             <input type="text" name="textTipo"/><br/>
             <input type="submit"/>
+
+        
+            <h1>Excluir de Quarto</h1>
+            <form action="FrontController?action=ApagarQuarto" method="post">
+                Entre com seu nome
+                <input type="text" name="textNome"/><br/>
+                <input type="submit"/>
+            </form>
         </form>
     </div>
 </div>

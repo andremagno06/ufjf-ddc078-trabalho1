@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To  change this template file, choose Tools | Templates
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.com.ufjf.dcc078.DAO;
@@ -15,30 +15,31 @@ import java.sql.Statement;
 
 /**
  *
- * @author Desenvolvedor
+ * @author 07228620674
  */
 public class QuartoDAO {
-    
+   
     private static QuartoDAO instance;
     
-
-
-    public static QuartoDAO getInstance() {
+    private QuartoDAO(){
+        
+    }
+    
+    public static QuartoDAO getInstance(){
+        if(instance == null)
+            instance = new QuartoDAO();
         return instance;
     }
-
-    public static void setInstance(QuartoDAO instance) {
-        QuartoDAO.instance = instance;
-    }
-
+    
     public void gravar(Quarto quarto) throws ClassNotFoundException, SQLException{
         Connection conn = null;
         Statement st = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
+            
             st.execute("insert into quarto (descricao, estado, tipo_quarto_id)" +
-                    " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado() + "','" + quarto.getDescricao() + "')");
+                    " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado() +"'"+ quarto.getTipo_quarto_id()+"')");
         } catch(SQLException e) {
             throw e;
         } finally {
@@ -48,13 +49,13 @@ public class QuartoDAO {
     
    
     
-    public void excluir(int id) throws ClassNotFoundException, SQLException{
+    public void excluir(String nome) throws ClassNotFoundException, SQLException{
         Connection conn = null;
         PreparedStatement st = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("DELETE FROM quarto WHERE id = ?");
-            st.setInt(1, id);
+            st = conn.prepareStatement("DELETE FROM quarto WHERE codigo = ?");
+            st.setString(1, nome);
             st.execute();
         } catch(SQLException e) {
             throw e;
@@ -63,14 +64,14 @@ public class QuartoDAO {
         }
     }
     
-    public Quarto ler(int id) throws ClassNotFoundException, SQLException{
+    public Quarto ler(int codigo) throws ClassNotFoundException, SQLException{
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM quarto WHERE id = ?");
-            st.setInt(1, id);
+            st = conn.prepareStatement("SELECT * FROM quarto WHERE codigo = ?");
+            st.setInt(1, codigo);
             rs = st.executeQuery();
             
             if(rs.next()){
@@ -97,10 +98,4 @@ public class QuartoDAO {
 
         }
     }
-    
-
-    
-    
-    
-    
 }

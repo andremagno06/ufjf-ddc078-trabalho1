@@ -5,6 +5,7 @@
  */
 package br.com.ufjf.dcc078.Action;
 
+import br.com.ufjf.dcc078.Action.Controller.Action;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
@@ -22,24 +23,24 @@ public class InserirQuartoAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String descricao = request.getParameter("textNome");
+        String descricao = request.getParameter("textDescricao");
         String tipo = request.getParameter("textTipo");
         
         if (descricao.equals("") || tipo.equals("")) {
             response.sendRedirect("index.jsp");
         } else {
-            Quarto quarto = new Quarto(descricao,"disponivel", Integer.parseInt(tipo));
             try {
+                Quarto quarto = new Quarto(descricao,"disponivel", Integer.parseInt(tipo));
                 QuartoDAO.getInstance().gravar(quarto);
-                response.sendRedirect("quartoSalvoSucesso.jsp");
+                response.sendRedirect("MensagemSucesso.jsp");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InserirQuartoAction.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendRedirect("quartoErro.jsp");
+                response.sendRedirect("MensagemErro.jsp");
             } catch (SQLException ex) {
                 Logger.getLogger(InserirQuartoAction.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendRedirect("quartoErro.jsp");
+                response.sendRedirect("MensagemErro.jsp");
             }
-            response.sendRedirect("quartoErro.jsp");
+            response.sendRedirect("MensagemErro.jsp");
             
         }
     }
