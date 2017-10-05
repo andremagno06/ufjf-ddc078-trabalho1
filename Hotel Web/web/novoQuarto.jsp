@@ -14,16 +14,30 @@
             </div>
         </div>            
         <hr/>
-
-        <h1>Cadastro de Quarto</h1>
         <form action="FrontController?action=InserirQuarto" method="post">
-            Entre com seu nome
-            <input type="text" name="textDescricao"/><br/>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input type="text" name="textDescricao" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Tipo de Quarto</label>
+                        <select name="textTipo" class="form-control">
+                            <option value="">Selecionar</option>
+                            <option value="1">Casal</option>
+                            <option value="2">Solteiro</option>
+                            <option value="3">Dulpo</option>
+                            <option value="4">Família</option>
+                        </select>
 
-            Entre com o tipo de quarto
-            <input type="text" name="textTipo"/><br/>
-            <input type="submit"/>
-
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
         </form>
     </div>
 </div>
