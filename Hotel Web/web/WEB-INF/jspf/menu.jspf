@@ -1,0 +1,32 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <a href="listaClientes.jsp" ><i class="fa fa-users" aria-hidden="true"></i>Clientes</a>
+            </li>
+            <li>
+                <a href="listaFuncionarios.jsp"><i class="fa fa-id-card" aria-hidden="true"></i>Funcionários</a>
+            </li>
+            <li>
+                <a href="listaQuartos.jsp"><i class="fa fa-bed" aria-hidden="true"></i>Quartos</a>
+            </li>
+            <li>
+                <a href="listaReservas.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Reservas</a>
+            </li>
+             <li>
+                <a href="novaReserva.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>novoReservas</a>
+            </li>
+             <li>
+                <a href="novoFuncionario.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Novo Funcionario</a>
+            </li>
+             <li>
+                <a href="novoQuarto.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Novo Quarto</a>
+            </li>
+             <li>
+                <a href="novoCliente.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Novo Cliente</a>
+            </li>
+        </ul>
+    </div>
+</nav>
