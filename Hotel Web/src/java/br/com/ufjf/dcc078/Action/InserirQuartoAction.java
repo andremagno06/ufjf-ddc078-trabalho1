@@ -19,15 +19,15 @@ public class InserirQuartoAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String nome = request.getParameter("textNome");
-        String email = request.getParameter("textEmail");
-
-        if (nome.equals("") || email.equals("")) {
+        String descricao = request.getParameter("textNome");
+        String tipo = request.getParameter("textTipo");
+        
+        if (descricao.equals("") || tipo.equals("")) {
             response.sendRedirect("index.jsp");
         } else {
-            Quarto contato = new Quarto(44, "quarto 5", "disponivel", 1);
+            Quarto contato = new Quarto(descricao,"disponivel", Integer.parseInt(tipo));
             QuartoDAO.getInstance().save(contato);
-            response.sendRedirect("QuartoSalvoSucesso.jsp");
+            response.sendRedirect("quartoSalvoSucesso.jsp");
         }
     }
 

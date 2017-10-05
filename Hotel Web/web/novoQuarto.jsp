@@ -15,21 +15,14 @@
         </div>            
         <hr/>
 
-        <form>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label>Descrição</label>
-                        <input class="form-control" name="descricao"/>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
-                </div>
-            </div>
+        <h1>Cadastro de Contatos</h1>
+        <form action="FrontController?action=GravarContato" method="post">
+            Entre com seu nome
+            <input type="text" name="textNome"/><br/>
+            
+            Entre com o tipo de quarto
+            <input type="text" name="textTipo"/><br/>
+            <input type="submit"/>
         </form>
     </div>
 </div>

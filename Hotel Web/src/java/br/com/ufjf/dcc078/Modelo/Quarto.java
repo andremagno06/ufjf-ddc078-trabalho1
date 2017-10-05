@@ -21,8 +21,7 @@ public class Quarto {
 
    
 
-    public Quarto(int id, String descricao, String estado, int tipo_quarto_id) {
-        this.id = id;
+    public Quarto(String descricao, String estado, int tipo_quarto_id) {
         this.descricao = descricao;
         this.estado = estado;
         this.tipo_quarto_id = tipo_quarto_id;
