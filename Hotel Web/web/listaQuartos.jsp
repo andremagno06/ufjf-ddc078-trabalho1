@@ -10,32 +10,30 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>QUARTOS</h2>   
-                <table border = '1'> 
-                    <a href="FrontController?action=LerQuarto&codigo=1">
-                     Ler o primeiro contato
-                    </a>
-                    
-                    
-                    <thead>
-                        <tr>
-                            <th>descrição</th>
-                            <th>Estado</th>
-                            <th>Tipo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>${descricao}</td>
-                            <td>${estado}</td>
-                            <td>${tipo}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>            
         <hr/>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                <a href="novoQuarto.jsp" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar quarto</a>
+            </div>
+        </div>
+        <hr/>
 
-        <%--MOSTRAR TODOS OS QUARTOS EXISTENTES--%>
+        <%-- MOSTRAR TODOS OS QUARTOS --%>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Descrição</th>
+                    <th>Tipo de Quarto</th>
+                    <th>Estado</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
     </div>
 </div>

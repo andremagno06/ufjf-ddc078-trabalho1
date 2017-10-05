@@ -16,8 +16,26 @@
             </div>
         </div>            
         <hr/>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                <a href="novoCliente.jsp" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar cliente</a>
+            </div>
+        </div>
+        <hr/>
 
         <%-- MOSTRAR TODOS OS CLIENTES EXISTENTES --%>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Nome</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
 
     </div>
 </div>

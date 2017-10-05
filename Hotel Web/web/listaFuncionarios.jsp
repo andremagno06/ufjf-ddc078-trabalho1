@@ -16,8 +16,27 @@
             </div>
         </div>            
         <hr/>
-        
-        <%-- MOSTRAR TODOS OS FUNCIONÁRIOS EXISTENTES --%>
-        
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                <a href="novoFuncionario.jsp" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar funcionário</a>
+            </div>
+        </div>
+        <hr/>
+
+        <%-- MOSTRAR TODOS OS QUARTOS --%>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
     </div>
 </div>

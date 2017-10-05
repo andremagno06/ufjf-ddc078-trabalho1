@@ -15,18 +15,6 @@
             <li>
                 <a href="listaReservas.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Reservas</a>
             </li>
-             <li>
-                <a href="novaReserva.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>novoReservas</a>
-            </li>
-             <li>
-                <a href="novoFuncionario.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Novo Funcionario</a>
-            </li>
-             <li>
-                <a href="novoQuarto.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Novo Quarto</a>
-            </li>
-             <li>
-                <a href="novoCliente.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Novo Cliente</a>
-            </li>
         </ul>
     </div>
 </nav>
