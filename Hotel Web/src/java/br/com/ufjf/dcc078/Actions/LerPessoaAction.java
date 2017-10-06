@@ -9,6 +9,7 @@ package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
+import br.com.ufjf.dcc078.Modelo.Pessoa;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -45,12 +46,6 @@ public class LerPessoaAction implements Action{
                 view.forward(request, response);
                 response.sendRedirect("MensagemSucesso.jsp");
                 
-            } catch(SQLException e){
-                response.sendRedirect("MensagemErro.jsp");
-                e.printStackTrace();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(InserirQuartoAction.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendRedirect("MensagemErro.jsp");
             } catch (ServletException ex) {
                 Logger.getLogger(LerPessoaAction.class.getName()).log(Level.SEVERE, null, ex);
                 response.sendRedirect("MensagemErro.jsp");

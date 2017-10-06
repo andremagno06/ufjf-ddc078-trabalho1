@@ -41,7 +41,7 @@ public class LerQuartoAction implements Action{
                 request.setAttribute("estado", c.getEstado());
                 request.setAttribute("tipo", c.getTipo_quarto_id());
                 
-                RequestDispatcher view = request.getRequestDispatcher("ContatoLer.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("listaQuarto.jsp");
                 view.forward(request, response);
                 response.sendRedirect("MensagemSucesso.jsp");
                 

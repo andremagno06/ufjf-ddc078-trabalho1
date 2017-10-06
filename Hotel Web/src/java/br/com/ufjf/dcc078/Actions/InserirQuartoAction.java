@@ -33,12 +33,15 @@ public class InserirQuartoAction implements Action {
                 Quarto quarto = new Quarto(descricao, "disponivel", Integer.parseInt(tipo));
             try {
                 QuartoDAO.getInstance().gravar(quarto);
+                response.sendRedirect("MensagemSucesso.jsp");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(InserirQuartoAction.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendRedirect("MensagemErro.jsp");
             } catch (SQLException ex) {
                 Logger.getLogger(InserirQuartoAction.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendRedirect("MensagemErro.jsp");
             }
-                response.sendRedirect("MensagemSucesso.jsp");
+                
           
                
 
