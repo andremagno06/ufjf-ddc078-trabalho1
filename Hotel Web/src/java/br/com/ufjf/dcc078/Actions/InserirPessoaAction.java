@@ -6,7 +6,9 @@
 package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
+import br.com.ufjf.dcc078.DAO.PessoaDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
+import br.com.ufjf.dcc078.Modelo.Pessoa;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
 import java.sql.SQLException;
