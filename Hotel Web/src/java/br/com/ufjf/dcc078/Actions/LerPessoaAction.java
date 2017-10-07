@@ -37,7 +37,7 @@ public class LerPessoaAction implements Action{
         else{
             try{
                 int codInt = Integer.parseInt(codigo);
-                PessoaDAO pd= new PessoaDAO();
+                PessoaDAO pd = PessoaDAO.getInstance();
                 
                 request.setAttribute("ListaPessoa", pd.lerTodos());//retorna uma lista, deve ser implementado no cliente
                 

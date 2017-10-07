@@ -33,33 +33,19 @@ public class InserirReservaAction implements Action {
         String data_checkin = request.getParameter("textData_checkin");
         String data_checkout = request.getParameter("textData_checkout");
         String data_reserva = request.getParameter("textData_reserva");
-       
+
         if (pessoa_id.equals("") || quarto_id.equals("")) {
             response.sendRedirect("index.jsp");
         } else {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             try {
-                Date  data_checkin_date = formato.parse(data_checkin);
-                Date data_checkout_date = formato.parse(data_checkout);
-                Date data_reserva_date = formato.parse(data_reserva);
-                Reserva reserva = new  Reserva(Integer.parseInt(pessoa_id),Integer.parseInt(quarto_id), data_checkin_date , data_checkout_date, data_reserva_date);
+                Reserva reserva = new Reserva(Integer.parseInt(pessoa_id), Integer.parseInt(quarto_id), data_checkin, data_checkout, data_reserva);
                 ReservaDAO.getInstance().gravar(reserva);
                 response.sendRedirect("MensagemSucesso.jsp");
-            } catch (ParseException ex) {
+
+            } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(InserirReservaAction.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendRedirect("MensagemErro.jsp");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(InserirReservaAction.class.getName()).log(Level.SEVERE, null, ex);
-                 response.sendRedirect("MensagemErro.jsp");
-            } catch (SQLException ex) {
-                Logger.getLogger(InserirReservaAction.class.getName()).log(Level.SEVERE, null, ex); 
                 response.sendRedirect("MensagemErro.jsp");
             }
-           
-          
-                
-          
-               
 
         }
     }
