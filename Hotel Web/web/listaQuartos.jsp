@@ -22,7 +22,7 @@
         <hr/>
 
         <%-- MOSTRAR TODOS OS QUARTOS --%>
-        <table class="table">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
@@ -39,7 +39,10 @@
                         <td><c:out value="${quartos.descricao}"/></td>
                         <td><c:out value="${quartos.tipo_quarto_id}"/></td>
                         <td><c:out value="${quartos.estado}"/></td>
-                        <td class="text-center"></td>
+                        <td>
+                            <a href="FrontController?action=ExibirQuartos&id=${quartos.id}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a> &nbsp;
+                            <a href="FrontController?action=ExibirQuartos&id=${quartos.id}" onclick="confirm('Deseja realmente excluir?');"><i class="fa fa-trash fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
+                        </td>
                     </tr>
                 </c:forEach>    
             </tbody>
