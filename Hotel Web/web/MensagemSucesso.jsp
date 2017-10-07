@@ -7,8 +7,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h1>Salvo com sucesso!</h1>
-
 <div id="page-wrapper" >
     <div id="page-inner">
         <div class="row">

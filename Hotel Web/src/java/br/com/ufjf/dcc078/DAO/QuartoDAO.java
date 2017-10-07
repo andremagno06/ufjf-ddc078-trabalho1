@@ -7,12 +7,12 @@ package br.com.ufjf.dcc078.DAO;
 
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,7 +93,7 @@ public class QuartoDAO {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs;
-        List<Quarto> quartos = new VirtualFlow.ArrayLinkedList<>();
+        ArrayList<Quarto> quartos = new ArrayList();
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.prepareStatement("SELECT * FROM quarto");

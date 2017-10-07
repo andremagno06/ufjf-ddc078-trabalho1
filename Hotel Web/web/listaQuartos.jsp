@@ -4,6 +4,7 @@
     Author     : Ana Carolina
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 
 <div id="page-wrapper" >
     <div id="page-inner">
@@ -32,7 +33,13 @@
                 </tr>
             </thead>
             <tbody>
-
+                <c:forEach var="quartos" items="${quartos}">
+                    <td class="text-center"><c:out value="${quartos.id}"/></td>
+                    <td><c:out value="${quartos.descricao}"/></td>
+                    <td><c:out value="${quartos.tipo_quarto_id}"/></td>
+                    <td><c:out value="${quartos.estado}"/></td>
+                    <td class="text-center"></td>
+                </c:forEach>    
             </tbody>
         </table>
     </div>

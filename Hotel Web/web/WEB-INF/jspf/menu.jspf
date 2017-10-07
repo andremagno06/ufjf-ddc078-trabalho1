@@ -10,7 +10,7 @@
                 <a href="listaFuncionarios.jsp"><i class="fa fa-id-card" aria-hidden="true"></i>Funcionários</a>
             </li>
             <li>
-                <a href="listaQuartos.jsp"><i class="fa fa-bed" aria-hidden="true"></i>Quartos</a>
+                <a href="FrontController?action=ExibirQuartos"><i class="fa fa-bed" aria-hidden="true"></i>Quartos</a>
             </li>
             <li>
                 <a href="listaReservas.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Reservas</a>
