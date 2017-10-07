@@ -14,18 +14,18 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=InserirQuarto" method="post">
+        <form action="FrontController?action=InserirQuarto" method="post" onsubmit="return novoQuarto();">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Descrição</label>
-                        <input type="text" name="textDescricao" class="form-control" />
+                        <input type="text" id="txtDescricao" name="textDescricao" class="form-control" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Tipo de Quarto</label>
-                        <select name="textTipo" class="form-control">
+                        <select id="txtTipo" name="textTipo" class="form-control">
                             <option value="">Selecionar</option>
                             <option value="1">Casal</option>
                             <option value="2">Solteiro</option>
@@ -38,6 +38,7 @@
             </div>
             <hr/>
             <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+            <a href="FrontController?action=ExibirQuartos" class="btn btn-primary"><i class="fa fa-table" aria-hidden="true"></i> Voltar para listagem</a>
         </form>
     </div>
 </div>

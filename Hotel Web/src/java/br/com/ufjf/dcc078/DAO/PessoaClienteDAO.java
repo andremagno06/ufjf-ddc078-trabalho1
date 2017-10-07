@@ -32,7 +32,7 @@ public class PessoaClienteDAO {
         ArrayList<Pessoa> pessoas = new ArrayList();
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM pessoa WHERE  tipo_pessoa='C' ");
+            st = conn.prepareStatement("SELECT * FROM pessoa WHERE tipo_pessoa='C' ");
             rs = st.executeQuery();
             
             while (rs.next()) {

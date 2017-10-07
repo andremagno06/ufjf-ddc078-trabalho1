@@ -30,9 +30,22 @@ public class PessoaDAO {
         return instance;
     }
     
-    private PessoaDAO() {
+    public PessoaDAO() {
         
     }
+    
+    //padrão facade
+    public List<Pessoa> lerTodosClientes() throws ClassNotFoundException, SQLException{
+    PessoaClienteDAO p = new  PessoaClienteDAO();
+    return p.lerTodosClientes();
+    }
+    
+      public List<Pessoa> lerTodosFuncionarios() throws ClassNotFoundException, SQLException{
+    PessoaFuncionarioDAO p = new  PessoaFuncionarioDAO();
+    return p.lerTodosClientes();
+    }
+    
+  
     
     public void gravar(Pessoa pessoa) throws ClassNotFoundException, SQLException {
         Connection conn = null;
@@ -66,34 +79,7 @@ public class PessoaDAO {
         }
     }
     
-    public List<Pessoa> lerTodos() throws ClassNotFoundException, SQLException {
-        Connection conn = null;
-        PreparedStatement st = null;
-        ResultSet rs;
-        List<Pessoa> pessoas = new VirtualFlow.ArrayLinkedList<>();
-        try {
-            conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM pessoa");
-            rs = st.executeQuery();
-            
-            while (rs.next()) {
-                Pessoa pessoa = new Pessoa();
-                pessoa.setId(rs.getInt("id"));
-                pessoa.setNome(rs.getString("nome"));
-                pessoa.setCpf(rs.getString("cpf"));
-                pessoa.setEndereco(rs.getString("endereco"));
-                pessoa.setTipo_pessoa(rs.getString("tipo_pessoa").charAt(0));
-                pessoa.setEmail(rs.getString("email"));
-                pessoas.add(pessoa);
-            }
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            closeResources(conn, st);
-            
-        }
-        return pessoas;
-    }
+
     
     private void closeResources(Connection conn, Statement st) {
         try {

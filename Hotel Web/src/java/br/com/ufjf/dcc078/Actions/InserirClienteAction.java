@@ -35,12 +35,16 @@ public class InserirClienteAction implements Action {
         } else {
         
                 Pessoa pessoa = new Pessoa(nome,cpf,endereco,"C",email);
-            try {
-                PessoaDAO.getInstance().gravar(pessoa);
+           
+           try {
+               PessoaDAO.getInstance().gravar(pessoa);
+           } catch (ClassNotFoundException ex) {
+               Logger.getLogger(InserirClienteAction.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (SQLException ex) {
+               Logger.getLogger(InserirClienteAction.class.getName()).log(Level.SEVERE, null, ex);
+           }
    
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(InserirFuncionarioAction.class.getName()).log(Level.SEVERE, null, ex);
-            }
+          
                 response.sendRedirect("MensagemSucesso.jsp");
           
                
