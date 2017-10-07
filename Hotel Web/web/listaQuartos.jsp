@@ -41,7 +41,7 @@
                         <td><c:out value="${quartos.estado}"/></td>
                         <td>
                             <a href="FrontController?action=ExibirQuartos&id=${quartos.id}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a> &nbsp;
-                            <a href="FrontController?action=ExibirQuartos&id=${quartos.id}" onclick="confirm('Deseja realmente excluir?');"><i class="fa fa-trash fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
+                            <a href="FrontController?action=ApagarQuarto&id=${quartos.id}" onclick="confirm('Deseja realmente excluir?');"><i class="fa fa-trash fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </c:forEach>    
