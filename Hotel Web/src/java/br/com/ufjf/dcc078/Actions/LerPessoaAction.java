@@ -8,6 +8,7 @@ package br.com.ufjf.dcc078.Actions;
 
 
 import br.com.ufjf.dcc078.Controller.Action;
+import br.com.ufjf.dcc078.DAO.PessoaDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.Modelo.Pessoa;
 import br.com.ufjf.dcc078.Modelo.Quarto;
@@ -36,19 +37,21 @@ public class LerPessoaAction implements Action{
         else{
             try{
                 int codInt = Integer.parseInt(codigo);
-                Pessoa c = PessoaDAO.getInstance().ler(codInt);
+                PessoaDAO pd= new PessoaDAO();
                 
-                request.setAttribute("descricao", c.getDescricao());
-                request.setAttribute("estado", c.getEstado());
-                request.setAttribute("tipo", c.getTipo_quarto_id());
+                request.setAttribute("ListaPessoa", pd.lerTodos());//retorna uma lista, deve ser implementado no cliente
                 
-                RequestDispatcher view = request.getRequestDispatcher("ContatoLer.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("listaCliente.jsp");
                 view.forward(request, response);
                 response.sendRedirect("MensagemSucesso.jsp");
                 
             } catch (ServletException ex) {
                 Logger.getLogger(LerPessoaAction.class.getName()).log(Level.SEVERE, null, ex);
                 response.sendRedirect("MensagemErro.jsp");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LerPessoaAction.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(LerPessoaAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -25,14 +25,17 @@ public class InserirPessoaAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String descricao = request.getParameter("textDescricao");
-        String tipo = request.getParameter("textTipo");
+        String nome = request.getParameter("textNome");
+        String cpf = request.getParameter("textCPF");
+        String endereco = request.getParameter("textEndereço");
+        String tipo_Pessoa = request.getParameter("textTipo_Pessoa");
+        String email = request.getParameter("textEmail");
 
-        if (descricao.equals("") || tipo.equals("")) {
-            response.sendRedirect("index.jsp");
+        if (nome.equals("") || cpf.equals("")) {
+            response.sendRedirect("Index.jsp");   //???????????
         } else {
         
-                Pessoa pessoa = new Pessoa(descricao, "disponivel", Integer.parseInt(tipo));
+                Pessoa pessoa = new Pessoa(nome,cpf,endereco,tipo_Pessoa.charAt(0),email);
             try {
                 PessoaDAO.getInstance().gravar(pessoa);
               
