@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
@@ -18,29 +13,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Action para alterar os dados do quarto
  *
- * @author 07228620674
+ * @author Ana Carolina Fidelis Gonçalves
  */
-public class LerQuartoAction implements Action {
+public class AlterarQuartoAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id = request.getParameter("id");
+        /*String descricao = request.getParameter("txtDescricao");
+        String tipo = request.getParameter("txtTipo");
+        String estado = request.getParameter("txtEstado");*/
 
         if (id.equals("")) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.php"); //Registro não encontrado
         } else {
             try {
+                //recuperar o quarto e carregar
                 Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(id));
                 request.setAttribute("quarto", quarto);
-
                 RequestDispatcher view = request.getRequestDispatcher("alterarQuarto.jsp");
                 view.forward(request, response);
-
-            } catch (SQLException | ClassNotFoundException | ServletException e) {
+            } catch (ClassNotFoundException | SQLException | ServletException ex) {
                 response.sendRedirect("MensagemErro.jsp");
             }
         }
+
     }
 
 }

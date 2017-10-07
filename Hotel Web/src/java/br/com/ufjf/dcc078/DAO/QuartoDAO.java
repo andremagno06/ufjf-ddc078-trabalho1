@@ -1,11 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.dcc078.DAO;
 
 import br.com.ufjf.dcc078.Modelo.Quarto;
+import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
+import br.com.ufjf.dcc078.Modelo.QuartoEstadoLimpeza;
+import br.com.ufjf.dcc078.Modelo.QuartoEstadoManutencao;
+import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,10 +14,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 07228620674
- */
 public class QuartoDAO {
 
     private static QuartoDAO instance;
@@ -41,7 +36,7 @@ public class QuartoDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
             st.execute("insert into quarto (descricao,estado,tipo_quarto_id)"
-                    + " values ('" + quarto.getDescricao()+ "', '" +quarto.getEstado()+ "', '" +quarto.getTipo_quarto_id()+ "')");
+                    + " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado().getNome() + "', '" + quarto.getTipo_quarto_id() + "')");
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -64,6 +59,22 @@ public class QuartoDAO {
         }
     }
 
+    public void alterar(Quarto quarto) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        Statement st = null;
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            st.execute("UPDATE quarto "
+                    + " SET descricao = '" + quarto.getDescricao()+ "', tipo_quarto_id =" + quarto.getTipo_quarto_id() + ", estado = '" + quarto.getEstado().getNome() + "' "
+                    + "WHERE id = " + quarto.getId());
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+    }
+
     public Quarto ler(int id) throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement st = null;
@@ -75,11 +86,26 @@ public class QuartoDAO {
             rs = st.executeQuery();
 
             if (rs.next()) {
-                return new Quarto(
-                        rs.getString("descricao"),
-                        rs.getString("estado"),
-                        rs.getInt("tipo_quarto_id")
-                );
+                Quarto quarto = new Quarto();
+                quarto.setId(rs.getInt("id"));
+                quarto.setDescricao(rs.getString("descricao"));
+                //tratando os estados do quarto 
+                switch (rs.getString("estado")) {
+                    case "Ocupado":
+                        quarto.setEstado(new QuartoEstadoOcupado());
+                        break;
+                    case "Manutenção":
+                        quarto.setEstado(new QuartoEstadoManutencao());
+                        break;
+                    case "Limpeza":
+                        quarto.setEstado(new QuartoEstadoLimpeza());
+                        break;
+                    default:
+                        quarto.setEstado(new QuartoEstadoDisponivel());
+                        break;
+                }
+                quarto.setTipo_quarto_id(rs.getInt("tipo_quarto_id"));
+                return quarto;
             }
         } catch (SQLException e) {
             throw e;
@@ -103,7 +129,20 @@ public class QuartoDAO {
                 Quarto quarto = new Quarto();
                 quarto.setId(rs.getInt("id"));
                 quarto.setDescricao(rs.getString("descricao"));
-                quarto.setEstado(rs.getString("estado"));
+                switch (rs.getString("estado")) {
+                    case "Ocupado":
+                        quarto.setEstado(new QuartoEstadoOcupado());
+                        break;
+                    case "Manutenção":
+                        quarto.setEstado(new QuartoEstadoManutencao());
+                        break;
+                    case "Limpeza":
+                        quarto.setEstado(new QuartoEstadoLimpeza());
+                        break;
+                    default:
+                        quarto.setEstado(new QuartoEstadoDisponivel());
+                        break;
+                }
                 quarto.setTipo_quarto_id(rs.getInt("tipo_quarto_id"));
                 quartos.add(quarto);
             }

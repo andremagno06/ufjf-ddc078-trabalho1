@@ -81,9 +81,9 @@ public class ReservaDAO {
                 reserva.setId(rs.getInt("id"));
                 reserva.setPessoa_id(rs.getInt("id_pessoa"));
                 reserva.setQuarto_id(rs.getInt("id_quarto"));
-                reserva.setData_checkin(rs.getDate("data_checkin"));
-                reserva.setData_checkout(rs.getDate("data_checkout"));
-                reserva.setData_reserva(rs.getDate("data_reserva"));
+                reserva.setData_checkin(rs.getString("data_checkin"));
+                reserva.setData_checkout(rs.getString("data_checkout"));
+                reserva.setData_reserva(rs.getString("data_reserva"));
                 reservas.add(reserva);
             }
         } catch (SQLException e) {

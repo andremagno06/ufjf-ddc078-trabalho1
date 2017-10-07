@@ -14,3 +14,8 @@ function novoQuarto() {
     return true;
 }
 
+function excluirRegistro(url){
+    if(confirm("Deseja realmente excluir registro?")){
+        window.location = url;
+    }
+}

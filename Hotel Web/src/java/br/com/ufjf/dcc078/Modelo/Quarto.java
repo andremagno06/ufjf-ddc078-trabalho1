@@ -1,46 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.dcc078.Modelo;
 
-import br.com.ufjf.dcc078.DAO.QuartoDAO;
-
-/**
- *
- * @author Desenvolvedor
- */
 public class Quarto {
-   
-    
-    private  int id;
-    private String descricao;	
-    private String estado;
+
+    private int id;
+    private String descricao;
+    private QuartoEstado estado;
     private int tipo_quarto_id;
 
-   
+    public Quarto() {
+    }
 
-    public Quarto(String descricao, String estado, int tipo_quarto_id) {
+    public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.descricao = descricao;
         this.estado = estado;
         this.tipo_quarto_id = tipo_quarto_id;
     }
 
-    public Quarto() {
-    }
-
-    public Quarto(int id, String descricao, String estado, int tipo_quarto_id) {
+    public Quarto(int id, String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.id = id;
         this.descricao = descricao;
         this.estado = estado;
         this.tipo_quarto_id = tipo_quarto_id;
     }
-
-    
-
-   
-
 
     public int getId() {
         return id;
@@ -58,11 +39,11 @@ public class Quarto {
         this.descricao = descricao;
     }
 
-    public String getEstado() {
+    public QuartoEstado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(QuartoEstado estado) {
         this.estado = estado;
     }
 
@@ -73,7 +54,5 @@ public class Quarto {
     public void setTipo_quarto_id(int tipo_quarto_id) {
         this.tipo_quarto_id = tipo_quarto_id;
     }
-    
-    
-    
+
 }
