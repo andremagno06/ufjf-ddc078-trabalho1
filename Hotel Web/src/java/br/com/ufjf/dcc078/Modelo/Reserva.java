@@ -5,6 +5,8 @@
  */
 package br.com.ufjf.dcc078.Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Davi
@@ -14,14 +16,14 @@ public class Reserva {
     private int id;
     private int pessoa_id;
     private int quarto_id;
-    private String data_checkin;
-    private String data_checkout;
-    private String data_reserva;
+    private Date data_checkin;
+    private Date data_checkout;
+    private Date data_reserva;
 
     public Reserva() {
     }
 
-    public Reserva(int id, int pessoa_id, int quarto_id, String data_checkin, String data_checkout, String data_reserva) {
+    public Reserva(int id, int pessoa_id, int quarto_id, Date data_checkin, Date data_checkout, Date data_reserva) {
         this.id = id;
         this.pessoa_id = pessoa_id;
         this.quarto_id = quarto_id;
@@ -29,6 +31,15 @@ public class Reserva {
         this.data_checkout = data_checkout;
         this.data_reserva = data_reserva;
     }
+    public Reserva(int pessoa_id, int quarto_id, Date data_checkin, Date data_checkout, Date data_reserva) {
+        this.pessoa_id = pessoa_id;
+        this.quarto_id = quarto_id;
+        this.data_checkin = data_checkin;
+        this.data_checkout = data_checkout;
+        this.data_reserva = data_reserva;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -54,27 +65,27 @@ public class Reserva {
         this.quarto_id = quarto_id;
     }
 
-    public String getData_checkin() {
+    public Date getData_checkin() {
         return data_checkin;
     }
 
-    public void setData_checkin(String data_checkin) {
+    public void setData_checkin(Date data_checkin) {
         this.data_checkin = data_checkin;
     }
 
-    public String getData_checkout() {
+    public Date getData_checkout() {
         return data_checkout;
     }
 
-    public void setData_checkout(String data_checkout) {
+    public void setData_checkout(Date data_checkout) {
         this.data_checkout = data_checkout;
     }
 
-    public String getData_reserva() {
+    public Date getData_reserva() {
         return data_reserva;
     }
 
-    public void setData_reserva(String data_reserva) {
+    public void setData_reserva(Date data_reserva) {
         this.data_reserva = data_reserva;
     }
     
