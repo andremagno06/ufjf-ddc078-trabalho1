@@ -15,13 +15,13 @@ public class Pessoa {
     private String nome;
     private String cpf;
     private String endereco;
-    private char tipo_pessoa;
+    private String tipo_pessoa;
     private String email;
 
     public Pessoa() {
     }
 
-    public Pessoa(int id, String nome, String cpf, String endereco, char tipo_pessoa, String email) {
+    public Pessoa(int id, String nome, String cpf, String endereco, String tipo_pessoa, String email) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -30,7 +30,7 @@ public class Pessoa {
         this.email = email;
     } 
 
-    public Pessoa(String nome, String cpf, String endereco, char tipo_pessoa, String email) {
+    public Pessoa(String nome, String cpf, String endereco, String tipo_pessoa, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
@@ -70,11 +70,11 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public char getTipo_pessoa() {
+    public String getTipo_pessoa() {
         return tipo_pessoa;
     }
 
-    public void setTipo_pessoa(char tipo_pessoa) {
+    public void setTipo_pessoa(String tipo_pessoa) {
         this.tipo_pessoa = tipo_pessoa;
     }
 

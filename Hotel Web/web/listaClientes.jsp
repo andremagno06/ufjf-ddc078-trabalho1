@@ -7,7 +7,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="page-wrapper" >
     <div id="page-inner">
         <div class="row">
@@ -24,18 +24,29 @@
         <hr/>
 
         <%-- MOSTRAR TODOS OS CLIENTES EXISTENTES --%>
+
         <table class="table">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
                     <th>Nome</th>
-                    <th>Operações</th>
+                    <th>CPF</th>
+                    <th>Endereço</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-
+            <c:forEach var="pessoas" items="${pessoas}">
+                <tr>
+                    <td class="text-center"><c:out value="${pessoas.id}"/></td>
+                <td><c:out value="${pessoas.nome}"/></td>
+                <td><c:out value="${pessoas.cpf}"/></td>
+                <td><c:out value="${pessoas.endereco}"/></td>
+                <td><c:out value="${pessoas.email}"/></td>
+                <td class="text-center"></td>
+            </c:forEach>    
+            </tr>
             </tbody>
         </table>
-
     </div>
 </div>

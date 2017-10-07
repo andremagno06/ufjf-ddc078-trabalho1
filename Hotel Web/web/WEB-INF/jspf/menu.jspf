@@ -4,10 +4,10 @@
     <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
             <li>
-                <a href="listaClientes.jsp" ><i class="fa fa-users" aria-hidden="true"></i>Clientes</a>
+                <a href="FrontController?action=ExibirCliente" ><i class="fa fa-users" aria-hidden="true"></i>Clientes</a>
             </li>
             <li>
-                <a href="listaFuncionarios.jsp"><i class="fa fa-id-card" aria-hidden="true"></i>Funcionários</a>
+                <a href="FrontController?action=ExibirFuncionario"><i class="fa fa-id-card" aria-hidden="true"></i>Funcionários</a>
             </li>
             <li>
                 <a href="FrontController?action=ExibirQuartos"><i class="fa fa-bed" aria-hidden="true"></i>Quartos</a>

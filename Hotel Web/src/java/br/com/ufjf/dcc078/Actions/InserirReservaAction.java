@@ -29,10 +29,10 @@ public class InserirReservaAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pessoa_id = request.getParameter("textPessoa_id");
-        String quarto_id = request.getParameter("textquarto_id");
-        String data_checkin = request.getParameter("textData_checkin");
-        String data_checkout = request.getParameter("textData_checkout");
-        String data_reserva = request.getParameter("textData_reserva");
+        String quarto_id = request.getParameter("textQuarto_id");
+        String data_checkin = request.getParameter("textDataCheckin");
+        String data_checkout = request.getParameter("textDataCheckout");
+        String data_reserva = request.getParameter("textDataReserva");
        
         if (pessoa_id.equals("") || quarto_id.equals("")) {
             response.sendRedirect("index.jsp");

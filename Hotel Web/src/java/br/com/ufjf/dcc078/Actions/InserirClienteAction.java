@@ -21,28 +21,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Desenvolvedor
  */
-public class InserirPessoaAction implements Action {
+public class InserirClienteAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String nome = request.getParameter("textNome");
+       String nome = request.getParameter("textNome");
         String cpf = request.getParameter("textCPF");
-        String endereco = request.getParameter("textEndereço");
-        String tipo_Pessoa = request.getParameter("textTipo_Pessoa");
+        String endereco = request.getParameter("textEndereco");
         String email = request.getParameter("textEmail");
 
         if (nome.equals("") || cpf.equals("")) {
-            response.sendRedirect("Index.jsp");   //???????????
+            response.sendRedirect("Index.jsp");  //????????
         } else {
         
-                Pessoa pessoa = new Pessoa(nome,cpf,endereco,tipo_Pessoa.charAt(0),email);
+                Pessoa pessoa = new Pessoa(nome,cpf,endereco,"C",email);
             try {
                 PessoaDAO.getInstance().gravar(pessoa);
-              
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(InserirPessoaAction.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(InserirPessoaAction.class.getName()).log(Level.SEVERE, null, ex);
+   
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(InserirFuncionarioAction.class.getName()).log(Level.SEVERE, null, ex);
             }
                 response.sendRedirect("MensagemSucesso.jsp");
           
