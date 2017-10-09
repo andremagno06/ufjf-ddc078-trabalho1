@@ -21,22 +21,25 @@ public class InserirReservaAction implements Action {
         String idCliente = request.getParameter("txtCliente");
         String idQuarto = request.getParameter("txtQuarto");
         String data = request.getParameter("txtDataReserva");
- 
-        
-        try {
-            Pessoa cliente = PessoaDAO.getInstance().ler(Integer.parseInt(idCliente));
-            Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(idQuarto));
-            Reserva reserva = new Reserva(cliente, quarto, data);
-            ReservaDAO.getInstance().gravar(reserva);
-            
-            //alterar o estado do quarto
-           /* QuartoEstadoDisponivel disponivel = (QuartoEstadoDisponivel) quarto.getEstado();
-            disponivel.ocupar(quarto);
-            QuartoDAO.getInstance().alterar(quarto);*/
-            
-            response.sendRedirect("MensagemSucesso.jsp");
-        } catch (ClassNotFoundException | SQLException ex) {
-            response.sendRedirect("MensagemErro.jsp");
+
+        if (idCliente.equals("") || idQuarto.equals("") || data.equals("")) {
+            response.sendRedirect("index.jsp");
+        } else {
+            try {
+                Pessoa cliente = PessoaDAO.getInstance().ler(Integer.parseInt(idCliente));
+                Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(idQuarto));
+                Reserva reserva = new Reserva(cliente, quarto, data);
+                ReservaDAO.getInstance().gravar(reserva);
+
+                //alterar o estado do quarto
+                QuartoEstadoDisponivel disponivel = (QuartoEstadoDisponivel) quarto.getEstado();
+                disponivel.ocupar(quarto);
+                QuartoDAO.getInstance().alterar(quarto);
+                response.sendRedirect("MensagemSucesso.jsp");
+            } catch (ClassNotFoundException | SQLException ex) {
+                response.sendRedirect("MensagemErro.jsp");
+            }
+
         }
     }
 

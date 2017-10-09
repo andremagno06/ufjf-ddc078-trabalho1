@@ -17,8 +17,6 @@
             </div>
         </div>            
         <hr/>
-
-
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                 <a href="FrontController?action=InserirReservaCombo" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar</a>
@@ -39,17 +37,17 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="reservas" items="${reserva}">
+                <c:forEach var="reservas" items="${reservas}">
                     <tr>
-                        <td class="text-center"><c:out value="${reserva.id}"/></td>
-                        <td><c:out value="${reserva.data_reserva}"/></td>
-                        <td><c:out value="${reserva.cliente.nome}"/></td>
-                        <td><c:out value="${reserva.quarto.descricao}"/></td>
-                        <td><c:out value="${reserva.data_checkin}"/></td>
-                        <td><c:out value="${reserva.data_checkout}"/></td>
+                        <td class="text-center"><c:out value="${reservas.id}"/></td>
+                        <td><c:out value="${reservas.data_reserva}"/></td>
+                        <td><c:out value="${reservas.cliente.nome}"/></td>
+                        <td><c:out value="${reservas.quarto.descricao}"/></td>
+                        <td><c:out value="${reservas.data_checkin}"/></td>
+                        <td><c:out value="${reservas.data_checkout}"/></td>
                         <td>
-                            <a href="FrontController?action=CheckinReserva&id=${reserva.id}"><i class="fa fa-check-square fa-lg" aria-hidden="true"></i></a> &nbsp;
-                            <a href="FrontController?action=CheckoutReserva&id=${reserva.id}"><i class="fa  fa-sign-out fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
+                            <a href="FrontController?action=CheckinReserva&id=${reservas.id}"><i class="fa fa-check-square fa-lg" aria-hidden="true"></i></a> &nbsp;
+                            <a href="FrontController?action=CheckoutReserva&id=${reservas.id}"><i class="fa  fa-sign-out fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </c:forEach>    

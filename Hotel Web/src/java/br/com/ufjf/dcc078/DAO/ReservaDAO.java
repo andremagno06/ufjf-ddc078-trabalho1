@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,10 +37,9 @@ public class ReservaDAO {
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            st.execute("insert into reserva (pessoa_id,quarto_id, data_checkin, data_checkout, data_reserva)"
-                    + " values ('" + reserva.getCliente().getId() + "', '" + reserva.getQuarto().getId() + "', '"
-                    + reserva.getData_checkin() + "', '" + reserva.getData_checkout() + "','"
-                    + reserva.getData_reserva() + "')");
+            String sql = "INSERT INTO reserva (pessoa_id,quarto_id, data_reserva)"
+                    + " VALUES (" + reserva.getCliente().getId() + ", " + reserva.getQuarto().getId() + ", '" + reserva.getData_reserva() + "')";
+            st.execute(sql);
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -66,17 +66,16 @@ public class ReservaDAO {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs;
-        List<Reserva> reservas = new VirtualFlow.ArrayLinkedList<>();
+        ArrayList<Reserva> reservas = new ArrayList();
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM reserva");
+            st = conn.prepareStatement("SELECT * FROM reserva ");
             rs = st.executeQuery();
 
             while (rs.next()) {
                 Reserva reserva = new Reserva();
                 reserva.setId(rs.getInt("id"));
-                PessoaCliente cliente = null;
-                cliente = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
+                PessoaCliente cliente = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
                 reserva.setCliente(cliente);
                 reserva.setQuarto(QuartoDAO.getInstance().ler(rs.getInt("quarto_id")));
                 reserva.setData_checkin(rs.getString("data_checkin"));
@@ -88,12 +87,9 @@ public class ReservaDAO {
             throw e;
         } finally {
             closeResources(conn, st);
-
         }
         return reservas;
     }
-
-    
 
     private void closeResources(Connection conn, Statement st) {
         try {

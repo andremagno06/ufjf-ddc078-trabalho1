@@ -135,7 +135,7 @@ public class PessoaDAO {
         Pessoa pessoa = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM quarto WHERE id = ?");
+            st = conn.prepareStatement("SELECT * FROM pessoa WHERE id = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
 
