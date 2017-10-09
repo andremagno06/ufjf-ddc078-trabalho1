@@ -74,7 +74,7 @@ public class ReservaDAO {
             while (rs.next()) {
                 Reserva reserva = new Reserva();
                 reserva.setId(rs.getInt("id"));
-                PessoaCliente cliente = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
+                PessoaCliente cliente = (PessoaCliente) PessoaDAO.getInstance().ler(rs.getInt("pessoa_id"));
                 reserva.setCliente(cliente);
                 reserva.setQuarto(QuartoDAO.getInstance().ler(rs.getInt("quarto_id")));
                 reserva.setData_checkin(rs.getString("data_checkin"));
