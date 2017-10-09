@@ -24,9 +24,10 @@ public class ExibirReservasAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            List<Reserva> reserva = ReservaDAO.getInstance().lerTodos();
-            request.setAttribute("quartos", reserva);
-            RequestDispatcher view = request.getRequestDispatcher("listaQuartos.jsp");
+            List<Reserva> reservas = ReservaDAO.getInstance().lerTodos();
+            request.setAttribute("nome", reservas);
+          
+            RequestDispatcher view = request.getRequestDispatcher("listaReservas.jsp");
             view.forward(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
             response.sendRedirect("MensagemErro.jsp");
