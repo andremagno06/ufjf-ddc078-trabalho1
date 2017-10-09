@@ -126,7 +126,12 @@ public class QuartoDAO {
             rs = st.executeQuery();
 
             while (rs.next()) {
-                Quarto quarto = new Quarto();
+                Quarto quarto = new Quarto() {
+                    @Override
+                    String getTipoQuarto() {
+                        
+                    }
+                };
                 quarto.setId(rs.getInt("id"));
                 quarto.setDescricao(rs.getString("descricao"));
                 switch (rs.getString("estado")) {

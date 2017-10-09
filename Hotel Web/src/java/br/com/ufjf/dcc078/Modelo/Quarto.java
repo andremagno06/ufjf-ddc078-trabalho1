@@ -1,6 +1,6 @@
 package br.com.ufjf.dcc078.Modelo;
 
-public class Quarto {
+public abstract class Quarto {
 
     private int id;
     private String descricao;
@@ -9,6 +9,8 @@ public class Quarto {
 
     public Quarto() {
     }
+    
+    abstract String getTipoQuarto();
 
     public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.descricao = descricao;

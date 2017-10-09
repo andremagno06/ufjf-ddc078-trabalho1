@@ -10,5 +10,19 @@ package br.com.ufjf.dcc078.Modelo;
  * @author Davi
  */
 public class QuartoSolteiro extends Quarto{
+
+    public QuartoSolteiro() {
+    }
+
+    public QuartoSolteiro(String descricao, QuartoEstado estado, int tipo_quarto_id) {
+        super(descricao, estado, tipo_quarto_id);
+    }
+
+    
+    
+    @Override
+    String getTipoQuarto() {
+        return "Solteiro";
+    }
     
 }

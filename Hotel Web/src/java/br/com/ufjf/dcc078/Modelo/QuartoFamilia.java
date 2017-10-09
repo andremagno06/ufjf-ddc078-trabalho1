@@ -10,5 +10,19 @@ package br.com.ufjf.dcc078.Modelo;
  * @author Davi
  */
 public class QuartoFamilia extends Quarto{
+
+    public QuartoFamilia(String descricao, QuartoEstado estado, int tipo_quarto_id) {
+        super(descricao, estado, tipo_quarto_id);
+    }
+
+    public QuartoFamilia() {
+    }
+
+    
+    
+    @Override
+    String getTipoQuarto() {
+        return "Familia";
+    }
     
 }
