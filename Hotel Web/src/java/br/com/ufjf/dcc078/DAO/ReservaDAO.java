@@ -3,7 +3,6 @@ package br.com.ufjf.dcc078.DAO;
 import br.com.ufjf.dcc078.Modelo.PessoaCliente;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,7 +68,7 @@ public class ReservaDAO {
         ArrayList<Reserva> reservas = new ArrayList();
         try {
             conn = DatabaseLocator.getInstance().getConnection();
-            st = conn.prepareStatement("SELECT * FROM reserva ");
+            st = conn.prepareStatement("SELECT * FROM reserva");
             rs = st.executeQuery();
 
             while (rs.next()) {

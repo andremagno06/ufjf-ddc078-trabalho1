@@ -13,7 +13,7 @@
                 <a href="FrontController?action=ExibirQuartos"><i class="fa fa-bed" aria-hidden="true"></i>Quartos</a>
             </li>
             <li>
-                <a href="listaReservas.jsp"><i class="fa fa-list-alt" aria-hidden="true"></i>Reservas</a>
+                <a href="FrontController?action=ExibirReservas"><i class="fa fa-list-alt" aria-hidden="true"></i>Reservas</a>
             </li>
         </ul>
     </div>
