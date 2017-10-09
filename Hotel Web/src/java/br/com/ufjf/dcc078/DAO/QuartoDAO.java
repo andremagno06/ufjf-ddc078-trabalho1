@@ -1,10 +1,14 @@
 package br.com.ufjf.dcc078.DAO;
 
 import br.com.ufjf.dcc078.Modelo.Quarto;
+import br.com.ufjf.dcc078.Modelo.QuartoCasal;
+import br.com.ufjf.dcc078.Modelo.QuartoDuplo;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoLimpeza;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoManutencao;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
+import br.com.ufjf.dcc078.Modelo.QuartoFamilia;
+import br.com.ufjf.dcc078.Modelo.QuartoSolteiro;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -79,14 +83,29 @@ public class QuartoDAO {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs;
+        Quarto quarto = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.prepareStatement("SELECT * FROM quarto WHERE id = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
-
+            
             if (rs.next()) {
-                Quarto quarto = new Quarto();
+                
+            switch(rs.getInt("tipo_quarto_id")){
+                case 1:
+                    quarto =new QuartoCasal();
+                    break;
+                case 2:
+                    quarto =new QuartoSolteiro();
+                    break;
+                case 3:
+                    quarto =new QuartoDuplo();
+                    break;
+                case 4:   
+                    quarto =new QuartoFamilia();
+                    break;
+            }
                 quarto.setId(rs.getInt("id"));
                 quarto.setDescricao(rs.getString("descricao"));
                 //tratando os estados do quarto 
@@ -120,13 +139,28 @@ public class QuartoDAO {
         PreparedStatement st = null;
         ResultSet rs;
         ArrayList<Quarto> quartos = new ArrayList();
+        Quarto quarto = null;
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.prepareStatement("SELECT * FROM quarto");
             rs = st.executeQuery();
-
+            
             while (rs.next()) {
-                Quarto quarto = new Quarto();
+                
+            switch(rs.getInt("tipo_quarto_id")){
+                case 1:
+                    quarto =new QuartoCasal();
+                    break;
+                case 2:
+                    quarto =new QuartoSolteiro();
+                    break;
+                case 3:
+                    quarto =new QuartoDuplo();
+                    break;
+                case 4:   
+                    quarto =new QuartoFamilia();
+                    break;
+            }
                 quarto.setId(rs.getInt("id"));
                 quarto.setDescricao(rs.getString("descricao"));
                 switch (rs.getString("estado")) {
