@@ -18,38 +18,39 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=InserirReserva" method="post">
+        <form action="FrontController?action=InserirReserva" method="post" onsubmit="return novaReserva();">
             <div class="row">
-
-
-          >
-
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Cliente</label>
+                        <select id="txtCliente" name="txtCliente" class="form-control">  
+                            <option value="">Selecione</option>
+                            <c:forEach var="clientes" items="${clientes}">
+                                <option value="${clientes.id}">${clientes.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Quarto</label>
-                        <select name="quartos" class="form-control">  <!-- //tem que pegar do banco de dados todas as quarto e colocar neste combobox-->
-                            <option value="">Selecone</option>
-                            <c:forEach var="quartos" items="${quartos}">   
-                                <option value="${quartos.id}">  ${quartos.nome} </option>   
-                            </c:forEach>   
+                        <select id="txtQuarto" name="txtQuarto" class="form-control">  
+                            <option value="">Selecione</option>
+                            <c:forEach var="quartos" items="${quartos}">
+                                <option value="${quartos.id}">${quartos.descricao}</option>
+                            </c:forEach>
                         </select>
-
                     </div>
-
+                </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Data da Reserva</label>
-                        <input type="text" name="textDataReserva" class="form-control" />
+                        <input type="text" id="txtDataReserva" name="txtDataReserva" class="form-control" />
                     </div>
                 </div>
-
-
             </div>
             <hr/>
             <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
         </form>
-
-        <%--FORMULÁRIO PARA INCLUIR NOVA RESERVA--%>
-
     </div>
 </div>

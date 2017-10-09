@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.dcc078.DAO;
 
+import br.com.ufjf.dcc078.Modelo.PessoaCliente;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
@@ -41,7 +37,7 @@ public class ReservaDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
             st.execute("insert into reserva (pessoa_id,quarto_id, data_checkin, data_checkout, data_reserva)"
-                    + " values ('" + reserva.getPessoa_id() + "', '" + reserva.getQuarto_id() + "', '"
+                    + " values ('" + reserva.getCliente().getId() + "', '" + reserva.getQuarto().getId() + "', '"
                     + reserva.getData_checkin() + "', '" + reserva.getData_checkout() + "','"
                     + reserva.getData_reserva() + "')");
         } catch (SQLException e) {
@@ -79,8 +75,10 @@ public class ReservaDAO {
             while (rs.next()) {
                 Reserva reserva = new Reserva();
                 reserva.setId(rs.getInt("id"));
-                reserva.setPessoa_id(rs.getInt("id_pessoa"));
-                reserva.setQuarto_id(rs.getInt("id_quarto"));
+                PessoaCliente cliente = null;
+                cliente = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
+                reserva.setCliente(cliente);
+                reserva.setQuarto(QuartoDAO.getInstance().ler(rs.getInt("quarto_id")));
                 reserva.setData_checkin(rs.getString("data_checkin"));
                 reserva.setData_checkout(rs.getString("data_checkout"));
                 reserva.setData_reserva(rs.getString("data_reserva"));
@@ -94,6 +92,8 @@ public class ReservaDAO {
         }
         return reservas;
     }
+
+    
 
     private void closeResources(Connection conn, Statement st) {
         try {

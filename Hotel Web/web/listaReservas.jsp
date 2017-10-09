@@ -7,6 +7,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+
 <div id="page-wrapper" >
     <div id="page-inner">
         <div class="row">
@@ -15,15 +17,15 @@
             </div>
         </div>            
         <hr/>
-        
-     
-         <div class="row">
+
+
+        <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                  <a href="FrontController?action=InserirReservaCombo" class="btn btn-primary"><i class="fa fa-table" aria-hidden="true"></i> Adicionar</a>
+                <a href="FrontController?action=InserirReservaCombo" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar</a>
             </div>
         </div>
         <hr/>
-        
+
         <table class="table">
             <thead>
                 <tr>
@@ -37,7 +39,20 @@
                 </tr>
             </thead>
             <tbody>
-
+                <c:forEach var="reservas" items="${reserva}">
+                    <tr>
+                        <td class="text-center"><c:out value="${reserva.id}"/></td>
+                        <td><c:out value="${reserva.data_reserva}"/></td>
+                        <td><c:out value="${reserva.cliente.nome}"/></td>
+                        <td><c:out value="${reserva.quarto.descricao}"/></td>
+                        <td><c:out value="${reserva.data_checkin}"/></td>
+                        <td><c:out value="${reserva.data_checkout}"/></td>
+                        <td>
+                            <a href="FrontController?action=CheckinReserva&id=${reserva.id}"><i class="fa fa-check-square fa-lg" aria-hidden="true"></i></a> &nbsp;
+                            <a href="FrontController?action=CheckoutReserva&id=${reserva.id}"><i class="fa  fa-sign-out fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                </c:forEach>    
             </tbody>
         </table>
     </div>
