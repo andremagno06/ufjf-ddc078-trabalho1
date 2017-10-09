@@ -9,7 +9,7 @@ package br.com.ufjf.dcc078.Modelo;
  *
  * @author Davi
  */
-public class QuartoCasal extends Quarto {
+public class QuartoCasal extends Quarto implements Promocao{
 
     public QuartoCasal() {
         this.setTipoQuarto("Casal");
@@ -24,6 +24,16 @@ public class QuartoCasal extends Quarto {
     public String tipoQuarto() {
 
         return "Casal";
+    }
+
+    @Override
+    public int obterDesconto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String obterPromocao() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
