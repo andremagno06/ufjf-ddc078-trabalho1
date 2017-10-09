@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.dcc078.DAO;
 
 import br.com.ufjf.dcc078.Modelo.Pessoa;
 import br.com.ufjf.dcc078.Modelo.PessoaCliente;
 import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -127,6 +121,32 @@ public class PessoaDAO {
             st = conn.prepareStatement("DELETE FROM pessoa WHERE id = ?");
             st.setInt(1, id);
             st.execute();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+    }
+    
+    public Pessoa ler(int id) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs;
+        Pessoa pessoa = null;
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.prepareStatement("SELECT * FROM quarto WHERE id = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getString("tipo_pessoa").equals("F")) {
+                    pessoa = new PessoaFuncionario(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "F", rs.getString("email"));
+                } else {
+                    pessoa = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
+                }
+            }
+            return pessoa;
         } catch (SQLException e) {
             throw e;
         } finally {

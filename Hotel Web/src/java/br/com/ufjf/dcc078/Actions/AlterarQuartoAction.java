@@ -3,12 +3,15 @@ package br.com.ufjf.dcc078.Actions;
 import br.com.ufjf.dcc078.Controller.Action;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.Modelo.Quarto;
+import br.com.ufjf.dcc078.Modelo.QuartoCasal;
+import br.com.ufjf.dcc078.Modelo.QuartoDuplo;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoLimpeza;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoManutencao;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
+import br.com.ufjf.dcc078.Modelo.QuartoFamilia;
+import br.com.ufjf.dcc078.Modelo.QuartoSolteiro;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,10 +34,23 @@ public class AlterarQuartoAction implements Action {
             response.sendRedirect("index.php"); //Registro não encontrado
         } else {
             try {
-                Quarto quarto = new Quarto();
+                Quarto quarto = null;
+
+                switch (Integer.parseInt(tipo)) {
+                    case 1:
+                        quarto = new QuartoCasal(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                        break;
+                    case 2:
+                        quarto = new QuartoSolteiro(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                        break;
+                    case 3:
+                        quarto = new QuartoDuplo(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                        break;
+                    case 4:
+                        quarto = new QuartoFamilia(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                        break;
+                }
                 quarto.setId(Integer.parseInt(id));
-                quarto.setDescricao(descricao);
-                quarto.setTipo_quarto_id(Integer.parseInt(tipo));
                 switch (estado) {
                     case "O":
                         quarto.setEstado(new QuartoEstadoOcupado());

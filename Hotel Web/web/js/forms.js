@@ -36,6 +36,27 @@ function alterarQuarto() {
     return true;
 }
 
+function novaReserva(){
+    var cliente = $('#txtCliente').val();
+    var quarto = $('#txtQuarto').val();
+    var data = $('#txtDataReserva').val();
+    if(cliente == ''){
+        alert('Informe o cliente.');
+        return false;
+    }
+    
+    if(quarto == ''){
+        alert('Informe o quarto.');
+        return false;
+    }
+    
+    if(data == ''){
+        alert('Informe a data.');
+        return false;
+    }
+    return true;
+}
+
 function excluirRegistro(url) {
     if (confirm("Deseja realmente excluir registro?")) {
         window.location = url;
