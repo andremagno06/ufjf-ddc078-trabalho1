@@ -13,15 +13,18 @@ public class QuartoFamilia extends Quarto{
 
     public QuartoFamilia(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         super(descricao, estado, tipo_quarto_id);
+        
     }
 
     public QuartoFamilia() {
+        this.setTipoQuarto("Familia");
     }
 
     
     
     @Override
-    String getTipoQuarto() {
+    public String tipoQuarto() {
+        
         return "Familia";
     }
     

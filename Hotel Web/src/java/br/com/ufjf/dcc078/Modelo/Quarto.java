@@ -6,11 +6,22 @@ public abstract class Quarto {
     private String descricao;
     private QuartoEstado estado;
     private int tipo_quarto_id;
+    protected String tipoQuarto;
+
+    public String getTipoQuarto() {
+        return tipoQuarto;
+    }
+
+    public void setTipoQuarto(String tipoQuarto) {
+        this.tipoQuarto = tipoQuarto;
+    }
 
     public Quarto() {
     }
     
-    abstract String getTipoQuarto();
+    abstract public String tipoQuarto();
+
+   
 
     public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.descricao = descricao;
