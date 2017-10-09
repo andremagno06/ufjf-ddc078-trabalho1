@@ -13,27 +13,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * Exibe todos os quartos cadastrados
  *
  * @author Ana Carolina Fidelis Gonçalves
  */
 public class ExibirReservasAction implements Action {
-    
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             List<Reserva> reservas = ReservaDAO.getInstance().lerTodos();
-            request.setAttribute("nome", reservas);
-          
+            request.setAttribute("reservas", reservas);
+
             RequestDispatcher view = request.getRequestDispatcher("listaReservas.jsp");
             view.forward(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | SQLException | ServletException ex) {
             response.sendRedirect("MensagemErro.jsp");
-        } catch (ServletException ex) {
-            Logger.getLogger(ExibirReservasAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

@@ -25,27 +25,25 @@
 
         <%-- MOSTRAR TODOS OS CLIENTES EXISTENTES --%>
 
-        <table class="table">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th class="text-center">#</th>
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Endereço</th>
-                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var="pessoas" items="${pessoas}">
-                <tr>
-                    <td class="text-center"><c:out value="${pessoas.id}"/></td>
-                <td><c:out value="${pessoas.nome}"/></td>
-                <td><c:out value="${pessoas.cpf}"/></td>
-                <td><c:out value="${pessoas.endereco}"/></td>
-                <td><c:out value="${pessoas.email}"/></td>
-                <td class="text-center"></td>
-            </c:forEach>    
-            </tr>
+                <c:forEach var="pessoas" items="${pessoas}">
+                    <tr>
+                        <td class="text-center"><c:out value="${pessoas.id}"/></td>
+                        <td><c:out value="${pessoas.nome}"/></td>
+                        <td><c:out value="${pessoas.cpf}"/></td>
+                        <td><c:out value="${pessoas.endereco}"/></td>
+                        <td class="text-center"></td>
+                    </tr>
+                </c:forEach>    
             </tbody>
         </table>
     </div>
