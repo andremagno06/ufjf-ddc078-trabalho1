@@ -178,6 +178,7 @@ public class QuartoDAO {
                         break;
                 }
                 quarto.setTipo_quarto_id(rs.getInt("tipo_quarto_id"));
+                quarto.setTipoQuarto(quarto.tipoQuarto());
                 quartos.add(quarto);
             }
         } catch (SQLException e) {

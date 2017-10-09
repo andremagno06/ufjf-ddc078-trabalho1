@@ -37,7 +37,7 @@
                     <tr>
                         <td class="text-center"><c:out value="${quartos.id}"/></td>
                         <td><c:out value="${quartos.descricao}"/></td>
-                        <td><c:out value="${quartos.tipo_quarto_id}"/></td>
+                        <td><c:out value="${quartos.tipoQuarto}"/></td>
                         <td><c:out value="${quartos.estado.nome}"/></td>
                         <td>
                             <a href="FrontController?action=LerQuarto&id=${quartos.id}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a> &nbsp;
