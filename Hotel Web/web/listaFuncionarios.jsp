@@ -25,7 +25,7 @@
 
         <%-- MOSTRAR TODOS OS CLIENTES EXISTENTES --%>
 
-        <table class="table">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th class="text-center">#</th>

@@ -30,9 +30,9 @@ public class InserirReservaAction implements Action {
             ReservaDAO.getInstance().gravar(reserva);
             
             //alterar o estado do quarto
-            QuartoEstadoDisponivel disponivel = (QuartoEstadoDisponivel) quarto.getEstado();
+           /* QuartoEstadoDisponivel disponivel = (QuartoEstadoDisponivel) quarto.getEstado();
             disponivel.ocupar(quarto);
-            QuartoDAO.getInstance().alterar(quarto);
+            QuartoDAO.getInstance().alterar(quarto);*/
             
             response.sendRedirect("MensagemSucesso.jsp");
         } catch (ClassNotFoundException | SQLException ex) {
