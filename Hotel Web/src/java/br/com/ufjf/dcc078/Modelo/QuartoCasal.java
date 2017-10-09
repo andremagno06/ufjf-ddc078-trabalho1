@@ -9,20 +9,21 @@ package br.com.ufjf.dcc078.Modelo;
  *
  * @author Davi
  */
-public class QuartoCasal extends Quarto{
+public class QuartoCasal extends Quarto {
 
     public QuartoCasal() {
+        this.setTipoQuarto("Casal");
     }
 
     public QuartoCasal(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         super(descricao, estado, tipo_quarto_id);
+        
     }
 
-    
-    
     @Override
-    String getTipoQuarto() {
+    public String tipoQuarto() {
+
         return "Casal";
     }
-    
+
 }

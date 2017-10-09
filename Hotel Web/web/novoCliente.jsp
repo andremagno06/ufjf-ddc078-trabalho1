@@ -18,7 +18,7 @@
 
         <%--FORMULÁRIO PARA INCLUIR NOVO FUNCIONÁRIO--%>
 
-         <form action="FrontController?action=InserirCliente" method="post">
+        <form action="FrontController?action=InserirCliente" method="post">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
@@ -26,25 +26,17 @@
                         <input type="text" name="textNome" class="form-control" />
                     </div>
                 </div>
-                
-                 <div class="col-lg-4 col-md-4">
+
+                <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>CPF</label>
                         <input type="text" name="textCPF" class="form-control" />
                     </div>
                 </div>
-                
-                 <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Endereço</label>
                         <input type="text" name="textEndereco" class="form-control" />
-                    </div>
-                </div>
-        
-                <div class="col-lg-4 col-md-4">
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="textEmail" class="form-control" />
                     </div>
                 </div>
             </div>

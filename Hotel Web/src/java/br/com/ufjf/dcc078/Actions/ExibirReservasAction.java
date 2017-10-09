@@ -6,13 +6,10 @@ import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 /**
  * Exibe todos os quartos cadastrados
@@ -20,20 +17,17 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ana Carolina Fidelis Gonçalves
  */
 public class ExibirReservasAction implements Action {
-    
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
+       try {
             List<Reserva> reservas = ReservaDAO.getInstance().lerTodos();
-            request.setAttribute("nome", reservas);
-          
+            request.setAttribute("reservas", reservas);
             RequestDispatcher view = request.getRequestDispatcher("listaReservas.jsp");
             view.forward(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException | SQLException | ServletException ex) {
             response.sendRedirect("MensagemErro.jsp");
-        } catch (ServletException ex) {
-            Logger.getLogger(ExibirReservasAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }
