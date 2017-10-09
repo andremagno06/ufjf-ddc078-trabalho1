@@ -15,9 +15,11 @@
             </div>
         </div>            
         <hr/>
-        <div class="row">
+        
+     
+         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                <a href="novaReserva.jsp" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar reserva</a>
+                  <a href="FrontController?action=InserirReservaCombo" class="btn btn-primary"><i class="fa fa-table" aria-hidden="true"></i> Adicionar</a>
             </div>
         </div>
         <hr/>
