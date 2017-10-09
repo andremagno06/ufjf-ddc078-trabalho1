@@ -8,6 +8,11 @@ package br.com.ufjf.dcc078.Modelo;
 public class QuartoEstadoOcupado implements QuartoEstado {
 
     @Override
+    public String getSigla() {
+        return "O";
+    }
+
+    @Override
     public String getNome() {
         return "Ocupado";
     }

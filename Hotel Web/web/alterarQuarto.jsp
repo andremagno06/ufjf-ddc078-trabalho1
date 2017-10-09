@@ -5,6 +5,7 @@
                  André Magno
                  Davi de Almeida
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="page-wrapper" >
     <div id="page-inner">
@@ -14,26 +15,38 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=AlterarQuarto" method="post" onsubmit="return novoQuarto();">
-            <input type="hidden" name="id" value="${quarto.id}"/>
+        <form action="FrontController?action=AlterarQuarto" method="post" onsubmit="return alterarQuarto();">
+            <input type="hidden" name="txtId" value="${quarto.id}"/>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Descrição</label>
-                        <input type="text" id="txtDescricao" name="textDescricao" class="form-control" value="${quarto.descricao}" />
+                        <input type="text" id="txtDescricao" name="txtDescricao" class="form-control" value="${quarto.descricao}" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Tipo de Quarto</label>
-                        <select id="txtTipo" name="textTipo" class="form-control">
+                        <select id="txtTipo" name="txtTipo" class="form-control">
                             <option value="">Selecionar</option>
-                            <option value="1">Casal</option>
-                            <option value="2">Solteiro</option>
-                            <option value="3">Dulpo</option>
-                            <option value="4">Família</option>
+                            <option ${quarto.tipo_quarto_id == 1 ? "selected" :""} value="1">Casal</option>
+                            <option ${quarto.tipo_quarto_id == 2 ? "selected" :""} value="2">Solteiro</option>
+                            <option ${quarto.tipo_quarto_id == 3 ? "selected" :""} value="3">Dulpo</option>
+                            <option ${quarto.tipo_quarto_id == 4 ? "selected" :""} value="4">Família</option>
                         </select>
 
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <select  id="txtEstado" name="txtEstado" class="form-control">
+                            <option value="">Selecionar</option>
+                            <option ${quarto.estado.sigla == "D" ? "selected" :""} value="D">Disponível</option>
+                            <option ${quarto.estado.sigla == "O" ? "selected" :""} value="O">Ocupado</option>
+                            <option ${quarto.estado.sigla == "L" ? "selected" :""} value="L">Limpeza</option>
+                            <option ${quarto.estado.sigla == "M" ? "selected" :""} value="M">Manutenção</option>
+                        </select>
                     </div>
                 </div>
             </div>

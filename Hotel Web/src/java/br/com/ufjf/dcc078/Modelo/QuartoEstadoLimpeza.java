@@ -6,6 +6,10 @@ package br.com.ufjf.dcc078.Modelo;
  * @author Ana Carolina Fidelis Gonçalves <acarolinafg@gmail.com>
  */
 public class QuartoEstadoLimpeza implements QuartoEstado {
+    @Override
+    public String getSigla() {
+        return "L";
+    }
 
     @Override
     public String getNome() {
@@ -31,5 +35,4 @@ public class QuartoEstadoLimpeza implements QuartoEstado {
     public void manutencao(Quarto quarto) {
         quarto.setEstado(new QuartoEstadoManutencao());
     }
-
 }
