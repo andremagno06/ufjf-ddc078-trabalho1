@@ -7,6 +7,8 @@ package br.com.ufjf.dcc078.Modelo;
  */
 public interface QuartoEstado {
 
+    public String getSigla();
+
     public String getNome();
 
     public void disponibilizar(Quarto quarto);
