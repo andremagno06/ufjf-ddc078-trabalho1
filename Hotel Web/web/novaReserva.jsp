@@ -7,6 +7,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+
+
 <div id="page-wrapper" >
     <div id="page-inner">
         <div class="row">
@@ -19,48 +22,19 @@
             <div class="row">
 
 
-                <div class="col-lg-4 col-md-4">
-                    <div class="form-group">
-                        <label>Pessoa</label>
-                 <select name="pessoas" class="form-control">   //tem que pegar do banco de dados todas as pessoas e colocar neste combobox-->
-   
-                          <c:forEach var="pessoas" items="${pessoas}">   
-                                <option value="${pessoas.nome}">   
-                                         ${nome.pessoas}  
-                                </option>   
-                            </c:forEach>   -->
-                       </select>-->
-
-                    </div>
-                </div>
+          >
 
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Quarto</label>
                         <select name="quartos" class="form-control">  <!-- //tem que pegar do banco de dados todas as quarto e colocar neste combobox-->
+                            <option value="">Selecone</option>
                             <c:forEach var="quartos" items="${quartos}">   
-                                <option value="${nome.quartos}">   
-                                    ${quartos.nome}   
-                                </option>   
+                                <option value="${quartos.id}">  ${quartos.nome} </option>   
                             </c:forEach>   
                         </select>
 
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4">
-                    <div class="form-group">
-                        <label>Data de Checkin</label>
-                        <input type="text" name="textDataCheckin" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4">
-                    <div class="form-group">
-                        <label>Data de Checkout</label>
-                        <input type="text" name="textDataCheckout" class="form-control" />
-                    </div>
-                </div>
 
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">

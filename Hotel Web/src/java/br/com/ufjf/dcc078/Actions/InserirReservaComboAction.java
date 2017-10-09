@@ -32,21 +32,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class InserirReservaComboAction implements Action {
 
-    
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    try{
-                  List<Pessoa> pessoas = PessoaDAO.getInstance().lerTodosClientes();
-                  List<Quarto> quartos = QuartoDAO.getInstance().lerTodos();
-                   request.setAttribute("quartos", quartos);
-                   request.setAttribute("pessoas", pessoas);
-                   RequestDispatcher view = request.getRequestDispatcher("novaReserva.jsp");  /erro aqui não sei porque??????????????????????????
-                   view.forward(request, response);
-                   
-        } catch (ClassNotFoundException | SQLException |ServletException ex) {
+        try {
+            List<Pessoa> pessoas = PessoaDAO.getInstance().lerTodosClientes();
+            List<Quarto> quartos = QuartoDAO.getInstance().lerTodos();
+
+            request.setAttribute("quartos", quartos);
+            //request.setAttribute("pessoas", pessoas);
+
+            RequestDispatcher view = request.getRequestDispatcher("novaReserva.jsp");
+            view.forward(request, response);
+
+        } catch (ClassNotFoundException | SQLException | ServletException ex) {
             response.sendRedirect("MensagemErro.jsp");
-        } 
-                
+        }
 
     }
 
