@@ -25,8 +25,8 @@
                         <label>Cliente</label>
                         <select id="txtCliente" name="txtCliente" class="form-control">  
                             <option value="">Selecione</option>
-                            <c:forEach var="pessoas" items="${pessoa}">
-                                <option value="${pessoa.id}">${pessoa.nome}</option>
+                            <c:forEach var="clientes" items="${clientes}">
+                                <option value="${clientes.id}">${clientes.nome}</option>
                             </c:forEach>
                         </select>
                     </div>
