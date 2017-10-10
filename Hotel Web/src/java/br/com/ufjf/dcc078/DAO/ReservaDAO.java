@@ -90,6 +90,22 @@ public class ReservaDAO {
         return reservas;
     }
 
+    public void gravarCheckin(Reserva reserva) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        Statement st = null;
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            st.execute("UPDATE reserva "
+                    + " SET data_checkin = '" + reserva.getData_checkin() + "' "
+                    + "WHERE id = " + reserva.getId());
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+    }
+
     private void closeResources(Connection conn, Statement st) {
         try {
             if (st != null) {
@@ -102,5 +118,34 @@ public class ReservaDAO {
         } catch (SQLException e) {
 
         }
+    }
+
+    public Reserva ler(int id) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs;
+        Reserva reserva = null;
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.prepareStatement("SELECT * FROM reserva WHERE id = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                reserva = new Reserva();
+                reserva.setId(rs.getInt("id"));
+                PessoaCliente cliente = (PessoaCliente) PessoaDAO.getInstance().ler(rs.getInt("pessoa_id"));
+                reserva.setCliente(cliente);
+                reserva.setQuarto(QuartoDAO.getInstance().ler(rs.getInt("quarto_id")));
+                reserva.setData_checkin(rs.getString("data_checkin"));
+                reserva.setData_checkout(rs.getString("data_checkout"));
+                reserva.setData_reserva(rs.getString("data_reserva"));
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+        return reserva;
     }
 }
