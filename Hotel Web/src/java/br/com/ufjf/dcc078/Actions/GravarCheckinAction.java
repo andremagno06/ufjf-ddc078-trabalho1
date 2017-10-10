@@ -8,12 +8,10 @@ import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GravarCheckin implements Action {
+public class GravarCheckinAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,7 +21,6 @@ public class GravarCheckin implements Action {
         if (id.equals("") || checkin.equals("")) {
             response.sendRedirect("index.php"); //Registro não encontrado
         } else {
-
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));
                 reserva.setData_checkin(checkin);
