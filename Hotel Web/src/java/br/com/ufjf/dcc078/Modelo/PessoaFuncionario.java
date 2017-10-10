@@ -5,12 +5,20 @@
  */
 package br.com.ufjf.dcc078.Modelo;
 
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Davi
  */
-public class PessoaFuncionario  extends  Pessoa{
+public class PessoaFuncionario  extends  Pessoa implements Observer{
  
+    
+    private final Observable quarto ;
+    private String novoEstado;
+    
     private int id;
     private String nome;
     private String cpf;
@@ -19,6 +27,8 @@ public class PessoaFuncionario  extends  Pessoa{
     private String email;
 
     public PessoaFuncionario() {
+               this.quarto= null;
+
     }
 
     public PessoaFuncionario(int id, String nome, String cpf, String endereco, String tipo_pessoa, String email) {
@@ -28,6 +38,7 @@ public class PessoaFuncionario  extends  Pessoa{
         this.endereco = endereco;
         this.tipo_pessoa = tipo_pessoa;
         this.email = email;
+        this.quarto= null;
     } 
 
     public PessoaFuncionario(String nome, String cpf, String endereco, String tipo_pessoa, String email) {
@@ -36,8 +47,17 @@ public class PessoaFuncionario  extends  Pessoa{
         this.endereco = endereco;
         this.tipo_pessoa = tipo_pessoa;
         this.email = email;
+        this.quarto= null;
+        
+        
     }
 
+      public PessoaFuncionario(Observable quarto){
+        this.quarto =quarto;
+        quarto.addObserver(this);
+    }
+    
+    
     public int getId() {
         return id;
     }
@@ -85,8 +105,23 @@ public class PessoaFuncionario  extends  Pessoa{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getNovoEstado() {
+        return novoEstado;
+    }
+
+    public void setNovoEstado(String novoEstado) {
+        this.novoEstado = novoEstado;
+    }
     
     
-    
-    
+        @Override
+    public void update(Observable quartoSubject, Object arg) {
+        if(quartoSubject instanceof Quarto){
+            Quarto quarto = (Quarto)quartoSubject;
+            novoEstado =quarto.getEstado().getNome();
+            System.out.println("Atenção o quarto "+quarto.getDescricao()+ "esta com estado " +novoEstado);
+        }
+    }
+       
 }
