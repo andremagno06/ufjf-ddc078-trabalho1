@@ -27,8 +27,8 @@ function alterarQuarto() {
         alert('Informe o tipo do quarto.');
         return false;
     }
-    
-    if(estado == ''){
+
+    if (estado == '') {
         alert('Informe o estado do quarto.');
         return false;
     }
@@ -36,21 +36,21 @@ function alterarQuarto() {
     return true;
 }
 
-function novaReserva(){
+function novaReserva() {
     var cliente = $('#txtCliente').val();
     var quarto = $('#txtQuarto').val();
     var data = $('#txtDataReserva').val();
-    if(cliente == ''){
+    if (cliente == '') {
         alert('Informe o cliente.');
         return false;
     }
-    
-    if(quarto == ''){
+
+    if (quarto == '') {
         alert('Informe o quarto.');
         return false;
     }
-    
-    if(data == ''){
+
+    if (data == '') {
         alert('Informe a data.');
         return false;
     }
@@ -61,4 +61,13 @@ function excluirRegistro(url) {
     if (confirm("Deseja realmente excluir registro?")) {
         window.location = url;
     }
+}
+
+function alterarReservaCheckin() {
+    var data = $('#txtDataCheckin').val();
+    if (data == '') {
+        alert('Informe a data.');
+        return false;
+    }
+    return true;
 }
