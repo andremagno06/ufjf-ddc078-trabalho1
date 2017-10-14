@@ -11,9 +11,14 @@ package br.com.ufjf.dcc078.Modelo;
  */
 public class PromocaoInverno implements Promocao{
 
+    public PromocaoInverno() {
+    }
+
+    
+    
     @Override
-    public float obterDesconto() {
-        return 10/100;
+    public int obterDesconto() {
+        return 10;
     }
 
     @Override

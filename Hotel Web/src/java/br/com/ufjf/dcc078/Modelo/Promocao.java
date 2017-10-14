@@ -11,7 +11,7 @@ package br.com.ufjf.dcc078.Modelo;
  */
 public interface Promocao {
     
-    public float obterDesconto();
+    public int obterDesconto();
     public String obterPromocao();
     
     

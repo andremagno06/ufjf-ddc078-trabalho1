@@ -15,6 +15,9 @@
             <li>
                 <a href="FrontController?action=ExibirReservas"><i class="fa fa-list-alt" aria-hidden="true"></i>Reservas</a>
             </li>
+            <li>
+                <a href="FrontController?action=ExibirPromocoes"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Promoções</a>
+            </li>
         </ul>
     </div>
 </nav>
