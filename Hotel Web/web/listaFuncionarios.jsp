@@ -18,7 +18,7 @@
         <hr/>
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                <a href="novoFuncionario.jsp" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar Funcionario</a>
+                 <a href="FrontController?action=FuncionarioExibirInserir" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar Funcionario</a>
             </div>
         </div>
         <hr/>

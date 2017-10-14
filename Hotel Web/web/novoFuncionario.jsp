@@ -7,6 +7,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+
 <div id="page-wrapper" >
     <div id="page-inner">
         <div class="row">
@@ -48,6 +50,17 @@
                     </div>
                 </div>
             </div>
+              <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Quarto</label>
+                        <select id="txtQuarto" name="txtQuarto" class="form-control">  
+                            <option value="">Selecione</option>
+                            <c:forEach var="quartos" items="${quartos}">
+                                <option value="${quartos.id}">${quartos.descricao}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
             <hr/>
             <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
         </form>

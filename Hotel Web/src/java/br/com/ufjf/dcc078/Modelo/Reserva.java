@@ -1,5 +1,7 @@
 package br.com.ufjf.dcc078.Modelo;
 
+import br.com.ufjf.dcc078.DAO.QuartoDAO;
+
 public class Reserva {
 
     private int id;
@@ -36,6 +38,7 @@ public class Reserva {
 
     public Quarto getQuarto() {
         return quarto;
+        
     }
 
     public void setQuarto(Quarto quarto) {

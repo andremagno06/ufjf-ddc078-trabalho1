@@ -1,6 +1,8 @@
 package br.com.ufjf.dcc078.Modelo;
 
-public abstract class Quarto {
+import java.util.Observable;
+
+public abstract class Quarto extends Observable {
 
     private int id;
     private String descricao;
@@ -32,7 +34,6 @@ public abstract class Quarto {
     
     abstract public String tipoQuarto();
 
-   
 
     public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.descricao = descricao;
@@ -65,6 +66,7 @@ public abstract class Quarto {
 
     public QuartoEstado getEstado() {
         return estado;
+      
     }
 
     public void setEstado(QuartoEstado estado) {
@@ -78,5 +80,11 @@ public abstract class Quarto {
     public void setTipo_quarto_id(int tipo_quarto_id) {
         this.tipo_quarto_id = tipo_quarto_id;
     }
+ 
+     public void setMudarEstadoCheckout(QuartoEstado novoEstado){
+        this.estado= novoEstado;
+        setChanged();
+        notifyObservers();
+     }
 
 }
