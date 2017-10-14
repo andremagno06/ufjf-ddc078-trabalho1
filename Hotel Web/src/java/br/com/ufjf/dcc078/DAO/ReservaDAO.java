@@ -105,6 +105,22 @@ public class ReservaDAO {
             closeResources(conn, st);
         }
     }
+    
+       public void gravarCheckout(Reserva reserva) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        Statement st = null;
+        try {
+            conn = DatabaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            st.execute("UPDATE reserva "
+                    + " SET data_checkout = '" + reserva.getData_checkout() + "' "
+                    + "WHERE id = " + reserva.getId());
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+    }
 
     private void closeResources(Connection conn, Statement st) {
         try {

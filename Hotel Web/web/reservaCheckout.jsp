@@ -14,11 +14,11 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>RESERVAS >> CHECKIN >> RESERVA Nº${reserva.id} </h2>   
+                <h2>RESERVAS >> CHECKOUT >> RESERVA Nº${reserva.id} </h2>   
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=GravarCheckin" method="post" onsubmit="return alterarReservaCheckin()">
+        <form action="FrontController?action=GravarCheckout" method="post" onsubmit="return alterarReservaCheckin()">
             <input type="hidden" name="txtId" value="${reserva.id}"/>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -39,12 +39,18 @@
                         <input type="text" id="txtDataReserva" name="txtDataReserva" class="form-control" disabled value="${reserva.data_reserva}" />
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Data da Checkin</label>
+                        <input type="text" id="txtCheckin" name="txtDataReserva" class="form-control" disabled value="${reserva.data_checkin}" />
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
-                        <label>Data de Checkin</label>
-                        <input type="text" id="txtDataCheckin" name="txtDataCheckin" class="form-control" />
+                        <label>Data de Checkout</label>
+                        <input type="text" id="txtDataCheckout" name="txtDataCheckout" class="form-control" />
                     </div>
                 </div>
             </div>

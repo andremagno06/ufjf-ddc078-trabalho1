@@ -141,7 +141,7 @@ public class PessoaDAO {
 
             if (rs.next()) {
                 if (rs.getString("tipo_pessoa").equals("F")) {
-                    pessoa = new PessoaFuncionario(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "F", rs.getString("email"));
+                    pessoa = new PessoaFuncionario(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "F", rs.getString("email"),null);
                 } else {
                     pessoa = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
                 }

@@ -55,6 +55,7 @@ public abstract class Quarto extends Observable {
 
     public QuartoEstado getEstado() {
         return estado;
+      
     }
 
     public void setEstado(QuartoEstado estado) {
@@ -68,13 +69,11 @@ public abstract class Quarto extends Observable {
     public void setTipo_quarto_id(int tipo_quarto_id) {
         this.tipo_quarto_id = tipo_quarto_id;
     }
-    
-    
-    
-     public void setMudarEstado(QuartoEstado novoEstado){
+ 
+     public void setMudarEstadoCheckout(QuartoEstado novoEstado){
         this.estado= novoEstado;
         setChanged();
         notifyObservers();
-    }
+     }
 
 }
