@@ -9,10 +9,11 @@ package br.com.ufjf.dcc078.Modelo;
  *
  * @author Davi
  */
-public class QuartoSolteiro extends Quarto implements Promocao{
+public class QuartoSolteiro extends Quarto{
 
     public QuartoSolteiro() {
         this.setTipoQuarto("Solteiro");
+        this.promocao = new PromocaoFimDeAno();
     }
 
     public QuartoSolteiro(String descricao, QuartoEstado estado, int tipo_quarto_id) {
@@ -28,14 +29,4 @@ public class QuartoSolteiro extends Quarto implements Promocao{
         return "Solteiro";
     }
 
-    @Override
-    public int obterDesconto() {
-        
-    }
-
-    @Override
-    public String obterPromocao() {
-        
-    }
-    
 }

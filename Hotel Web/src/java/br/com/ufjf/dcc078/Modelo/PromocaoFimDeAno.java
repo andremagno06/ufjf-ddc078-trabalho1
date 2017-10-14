@@ -9,10 +9,16 @@ package br.com.ufjf.dcc078.Modelo;
  *
  * @author Davi
  */
-public interface Promocao {
-    
-    public float obterDesconto();
-    public String obterPromocao();
-    
+public class PromocaoFimDeAno implements Promocao{
+
+    @Override
+    public float obterDesconto() {
+        return 15/100;
+    }
+
+    @Override
+    public String obterPromocao() {
+        return "Promoção de fim de ano";
+    }
     
 }

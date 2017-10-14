@@ -7,7 +7,18 @@ public abstract class Quarto {
     private QuartoEstado estado;
     private int tipo_quarto_id;
     protected String tipoQuarto;
+    Promocao promocao;
 
+    public Promocao getPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(Promocao promocao) {
+        this.promocao = promocao;
+    }
+    
+
+    
     public String getTipoQuarto() {
         return tipoQuarto;
     }
