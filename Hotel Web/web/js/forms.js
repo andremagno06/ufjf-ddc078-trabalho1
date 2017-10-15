@@ -63,6 +63,22 @@ function excluirRegistro(url) {
     }
 }
 
+function fazerCheckin(data, url) {
+    if (data == '') {
+        window.location = url;
+    }else{
+        alert("Checkin já foi realizado.");
+    }
+}
+
+function fazerCheckout(data, url) {
+    if (data == '') {
+        window.location = url;
+    }else{
+        alert("Checkout já foi realizado.");
+    }
+}
+
 function alterarReservaCheckin() {
     var data = $('#txtDataCheckin').val();
     if (data == '') {

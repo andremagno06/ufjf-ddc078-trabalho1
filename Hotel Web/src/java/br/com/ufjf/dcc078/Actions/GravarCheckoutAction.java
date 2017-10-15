@@ -6,15 +6,10 @@ import br.com.ufjf.dcc078.DAO.ReservaDAO;
 import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoLimpeza;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GravarCheckoutAction implements Action {
 
     private List<String> mensagem;
-    
-    
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id = request.getParameter("txtId");
@@ -36,33 +30,34 @@ public class GravarCheckoutAction implements Action {
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));
                 reserva.setData_checkout(checkout);
+                //alterar o estado do quarto
+                Quarto quarto = reserva.getQuarto();
+                QuartoEstado estado = quarto.getEstado();
+                estado.limpar(quarto);
+
+                //gravar as alterações no banco
                 ReservaDAO.getInstance().gravarCheckout(reserva);
+                QuartoDAO.getInstance().alterar(quarto);
 
-              
-               Quarto quarto = reserva.getQuarto();
-               
-               quarto.MudarEstadoCheckout(new QuartoEstadoLimpeza());
-               //  inserir o padrão Memento
-               
-       //    quarto.setMudarEstadoCheckout(quartoEstado);             
-               QuartoDAO.getInstance().alterar(quarto);
-               
-               
-                PessoaFuncionario p= new PessoaFuncionario();
-                mensagem =p.Mensagemup();
-               request.setAttribute("mensagem", mensagem);
-               RequestDispatcher view = request.getRequestDispatcher("ObserverMensagem.jsp");
-               view.forward(request, response);
-         
+                //mensagem para os funcionários
+                PessoaFuncionario p = new PessoaFuncionario();
+                mensagem = p.Mensagemup();
+                request.setAttribute("mensagem", mensagem);
+                RequestDispatcher view = request.getRequestDispatcher("ObserverMensagem.jsp");
+                view.forward(request, response);
 
-            } catch (ClassNotFoundException | SQLException ex) {
+            } catch (ClassNotFoundException | ServletException | SQLException ex) {
                 response.sendRedirect("MensagemErro.jsp");
-            } catch (ServletException ex) {
-                Logger.getLogger(GravarCheckoutAction.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedOperationException e) {
+                try {
+                    request.setAttribute("mensagem", e.getMessage());
+                    RequestDispatcher view = request.getRequestDispatcher("MensagemErroEstadoQuarto.jsp");
+                    view.forward(request, response);
+                } catch (ServletException ex) {
+                    response.sendRedirect("MensagemErro.jsp");
+                }
             }
         }
     }
-
-
 
 }

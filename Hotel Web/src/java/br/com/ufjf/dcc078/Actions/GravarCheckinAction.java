@@ -5,12 +5,13 @@ import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
-import br.com.ufjf.dcc078.Modelo.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,25 +27,29 @@ public class GravarCheckinAction implements Action {
         } else {
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));
-                reserva.setData_checkin(checkin);
-                ReservaDAO.getInstance().gravarCheckin(reserva);
 
                 //alterar o estado do quarto
-                
-                
-                
                 Quarto quarto = reserva.getQuarto();
-                
-                
-               quarto.setEstado(new QuartoEstadoOcupado());
-               // inserir o padrão Memento
-               
-               
-               QuartoDAO.getInstance().alterar(quarto);
+                QuartoEstado estado = quarto.getEstado();
+                estado.ocupar(quarto);
+
+                //fazer o checkin
+                reserva.setData_checkin(checkin);
+                ReservaDAO.getInstance().gravarCheckin(reserva);
+                QuartoDAO.getInstance().alterar(quarto); //gravar o estado do quarto alterado
+
                 response.sendRedirect("MensagemSucesso.jsp");
 
             } catch (ClassNotFoundException | SQLException ex) {
                 response.sendRedirect("MensagemErro.jsp");
+            } catch (UnsupportedOperationException e) {
+                try {
+                    request.setAttribute("mensagem", e.getMessage());
+                    RequestDispatcher view = request.getRequestDispatcher("MensagemErroEstadoQuarto.jsp");
+                    view.forward(request, response);
+                } catch (ServletException ex) {
+                    response.sendRedirect("MensagemErro.jsp");
+                }
             }
         }
     }

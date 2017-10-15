@@ -23,7 +23,7 @@ public class QuartoEstadoLimpeza implements QuartoEstado {
 
     @Override
     public void ocupar(Quarto quarto) {
-        throw new UnsupportedOperationException("Quarto não pode ser ocupado.");
+        throw new UnsupportedOperationException("Quarto não pode ser ocupado, pois está em limpeza.");
     }
 
     @Override

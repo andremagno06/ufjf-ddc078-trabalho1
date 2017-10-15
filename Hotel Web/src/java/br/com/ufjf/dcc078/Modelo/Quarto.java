@@ -12,21 +12,16 @@ public abstract class Quarto extends Observable {
     private int tipo_quarto_id;
     protected String tipoQuarto;
     Promocao promocao;
-     private List<Observer> envolvidosResponsaveisFuncionarios; 
-    
-     
-     public QuartoMemento saveToMemento(){
+    private List<Observer> envolvidosResponsaveisFuncionarios;
+
+    public QuartoMemento saveToMemento() {
         return new QuartoMemento(estado);
     }
-    
-    public void restoreFromMemento(QuartoMemento memento){
+
+    public void restoreFromMemento(QuartoMemento memento) {
         estado = memento.getEstadoSalvo();
     }
-     
-     
-     
-     
-     
+
     public Promocao getPromocao() {
         return promocao;
     }
@@ -34,9 +29,7 @@ public abstract class Quarto extends Observable {
     public void setPromocao(Promocao promocao) {
         this.promocao = promocao;
     }
-    
 
-    
     public String getTipoQuarto() {
         return tipoQuarto;
     }
@@ -47,9 +40,8 @@ public abstract class Quarto extends Observable {
 
     public Quarto() {
     }
-    
-    abstract public String tipoQuarto();
 
+    abstract public String tipoQuarto();
 
     public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.descricao = descricao;
@@ -82,7 +74,7 @@ public abstract class Quarto extends Observable {
 
     public QuartoEstado getEstado() {
         return estado;
-      
+
     }
 
     public void setEstado(QuartoEstado estado) {
@@ -96,16 +88,15 @@ public abstract class Quarto extends Observable {
     public void setTipo_quarto_id(int tipo_quarto_id) {
         this.tipo_quarto_id = tipo_quarto_id;
     }
- 
-      public void addEnvolvido(Observer p){
+
+    public void addEnvolvido(Observer p) {
         this.addObserver(p);
-      }
-    
-    
-     public void MudarEstadoCheckout(QuartoEstado novoEstado){
-        this.estado= novoEstado;
+    }
+
+    public void MudarEstadoCheckout(QuartoEstado novoEstado) {
+        this.estado = novoEstado;
         setChanged();
         notifyObservers();
-     }
+    }
 
 }

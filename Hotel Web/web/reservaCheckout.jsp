@@ -39,14 +39,14 @@
                         <input type="text" id="txtDataReserva" name="txtDataReserva" class="form-control" disabled value="${reserva.data_reserva}" />
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Data da Checkin</label>
                         <input type="text" id="txtCheckin" name="txtDataReserva" class="form-control" disabled value="${reserva.data_checkin}" />
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Data de Checkout</label>

@@ -46,4 +46,4 @@ public class FazerCheckInAction implements Action {
         
     }
 
-}
+
