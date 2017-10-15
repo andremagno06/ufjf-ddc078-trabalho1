@@ -40,8 +40,10 @@ public class GravarCheckoutAction implements Action {
 
               
                Quarto quarto = reserva.getQuarto();
-               QuartoEstado quartoEstado =  new QuartoEstadoLimpeza();
-               quarto.MudarEstadoCheckout(quartoEstado);
+               
+               quarto.MudarEstadoCheckout(new QuartoEstadoLimpeza());
+               //  inserir o padrão Memento
+               
        //    quarto.setMudarEstadoCheckout(quartoEstado);             
                QuartoDAO.getInstance().alterar(quarto);
                

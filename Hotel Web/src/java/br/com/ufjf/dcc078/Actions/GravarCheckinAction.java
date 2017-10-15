@@ -31,11 +31,13 @@ public class GravarCheckinAction implements Action {
 
                 //alterar o estado do quarto
                 
+                
+                
                 Quarto quarto = reserva.getQuarto();
-                QuartoMemento EstadosSalvos= QuartoMemento();
+                
                 
                quarto.setEstado(new QuartoEstadoOcupado());
-               
+               // inserir o padrão Memento
                
                
                QuartoDAO.getInstance().alterar(quarto);
