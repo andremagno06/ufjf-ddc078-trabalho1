@@ -13,6 +13,7 @@ import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -44,9 +45,11 @@ public class InserirFuncionarioAction implements Action {
                 
                 Pessoa pessoa;
                 pessoa= new PessoaFuncionario(nome,cpf,endereco,"F",email,quarto);
+                quarto.addEnvolvido((Observer)pessoa);
+                
                 PessoaDAO.getInstance().gravar(pessoa);
           
-              
+                
                
               
             } catch (ClassNotFoundException | SQLException ex) {

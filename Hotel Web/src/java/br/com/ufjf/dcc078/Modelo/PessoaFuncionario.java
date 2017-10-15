@@ -5,6 +5,10 @@
  */
 package br.com.ufjf.dcc078.Modelo;
 
+import br.com.ufjf.dcc078.Actions.GravarCheckoutAction;
+import com.sun.xml.xsom.impl.scd.Iterators;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -17,7 +21,6 @@ import javax.swing.JPanel;
 public class PessoaFuncionario  extends Pessoa implements Observer{
  
     
-    private final Observable quarto ;
    private  QuartoEstado novoEstado;
     private int id;
     private String nome;
@@ -25,9 +28,13 @@ public class PessoaFuncionario  extends Pessoa implements Observer{
     private String endereco;
     private String tipo_pessoa;
     private String email;
-
+    private List<String> lista= new ArrayList<String>();
+    
+    
+    
+    
     public PessoaFuncionario() {
-               this.quarto= null;
+             
                this.novoEstado= null;
     }
 
@@ -38,8 +45,6 @@ public class PessoaFuncionario  extends Pessoa implements Observer{
         this.endereco = endereco;
         this.tipo_pessoa = tipo_pessoa;
         this.email = email;
-        this.quarto= quarto;
-        quarto.addObserver(this);
         novoEstado=null;
     } 
 
@@ -49,12 +54,13 @@ public class PessoaFuncionario  extends Pessoa implements Observer{
         this.endereco = endereco;
         this.tipo_pessoa = tipo_pessoa;
         this.email = email;
-        this.quarto = quarto;
-        quarto.addObserver(this);
-        this.novoEstado= null;
-    }
 
- 
+        this.novoEstado= null;
+
+    }
+    
+   
+    
     public int getId() {
         return id;
     }
@@ -111,10 +117,18 @@ public class PessoaFuncionario  extends Pessoa implements Observer{
         @Override
     public void update(Observable quartoSubject, Object arg) {
         if(quartoSubject instanceof Quarto){
-            Quarto quarto = (Quarto)quartoSubject;
-            novoEstado =quarto.getEstado();
-            System.out.println("Atenção o quarto "+quarto.getDescricao()+ "esta com estado " +novoEstado.getNome());
+   
+           Quarto quarto = (Quarto)quartoSubject;
+           novoEstado =quarto.getEstado();
+           lista.add("Atenção "+getNome()+" o quarto "+quarto.getDescricao()+ "esta com estado " +novoEstado.getNome()); 
+           System.out.println("Atenção"+getNome()+" o quarto "+quarto.getDescricao()+ "esta com estado " +novoEstado.getNome());
         }
     }
+    public List<String> Mensagemup(){
+        lista.add("Teste1");
+        lista.add("Teste2");
+       return lista;
+    }
+    
        
 }

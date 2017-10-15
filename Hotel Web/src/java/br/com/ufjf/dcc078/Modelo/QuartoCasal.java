@@ -5,6 +5,8 @@
  */
 package br.com.ufjf.dcc078.Modelo;
 
+import java.util.Observable;
+
 /**
  *
  * @author Davi

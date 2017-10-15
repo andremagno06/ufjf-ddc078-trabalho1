@@ -1,6 +1,8 @@
 package br.com.ufjf.dcc078.Modelo;
 
+import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 public abstract class Quarto extends Observable {
 
@@ -10,7 +12,8 @@ public abstract class Quarto extends Observable {
     private int tipo_quarto_id;
     protected String tipoQuarto;
     Promocao promocao;
-
+     private List<Observer> envolvidosResponsaveisFuncionarios; 
+    
     public Promocao getPromocao() {
         return promocao;
     }
@@ -81,7 +84,12 @@ public abstract class Quarto extends Observable {
         this.tipo_quarto_id = tipo_quarto_id;
     }
  
-     public void setMudarEstadoCheckout(QuartoEstado novoEstado){
+      public void addEnvolvido(Observer p){
+        this.addObserver(p);
+      }
+    
+    
+     public void MudarEstadoCheckout(QuartoEstado novoEstado){
         this.estado= novoEstado;
         setChanged();
         notifyObservers();
