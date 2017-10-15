@@ -7,6 +7,7 @@ import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
+import br.com.ufjf.dcc078.Modelo.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,9 +30,14 @@ public class GravarCheckinAction implements Action {
                 ReservaDAO.getInstance().gravarCheckin(reserva);
 
                 //alterar o estado do quarto
+                
                 Quarto quarto = reserva.getQuarto();
-               QuartoEstado quartoEstado =  new QuartoEstadoOcupado();
-               quarto.setEstado(quartoEstado);
+                QuartoMemento EstadosSalvos= QuartoMemento();
+                
+               quarto.setEstado(new QuartoEstadoOcupado());
+               
+               
+               
                QuartoDAO.getInstance().alterar(quarto);
                 response.sendRedirect("MensagemSucesso.jsp");
 
