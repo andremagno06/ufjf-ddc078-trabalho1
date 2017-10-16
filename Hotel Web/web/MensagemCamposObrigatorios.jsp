@@ -15,7 +15,7 @@
         <hr />   
 
         <div class="alert alert-warning">
-            <strong>Atenção!</strong> Existem campos ogrigatório no formulário que devem ser preechido.
+            <strong>Atenção!</strong> Existem campos ogrigatórios no formulário que devem ser preechido ou o registro não foi encontrado para alteração.
         </div>
     </div>
 </div>

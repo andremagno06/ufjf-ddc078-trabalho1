@@ -17,7 +17,7 @@ public class CheckoutReservaAction implements Action {
         String id = request.getParameter("id");
 
         if (id.equals("")) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));

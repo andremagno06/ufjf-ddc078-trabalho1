@@ -23,7 +23,7 @@ public class InserirReservaAction implements Action {
         String data = request.getParameter("txtDataReserva");
 
         if (idCliente.equals("") || idQuarto.equals("") || data.equals("")) {
-            response.sendRedirect("index.jsp");
+             response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
             try {
                 Pessoa cliente = PessoaDAO.getInstance().ler(Integer.parseInt(idCliente));

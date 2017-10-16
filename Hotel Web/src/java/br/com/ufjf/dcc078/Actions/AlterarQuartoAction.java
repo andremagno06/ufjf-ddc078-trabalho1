@@ -6,9 +6,6 @@ import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoCasal;
 import br.com.ufjf.dcc078.Modelo.QuartoDuplo;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoLimpeza;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoManutencao;
-import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
 import br.com.ufjf.dcc078.Modelo.QuartoFamilia;
 import br.com.ufjf.dcc078.Modelo.QuartoSolteiro;
 import java.io.IOException;
@@ -33,7 +30,7 @@ public class AlterarQuartoAction implements Action {
         String estado = request.getParameter("txtEstado");
 
         if (id.equals("")) {
-            response.sendRedirect("index.php"); //Registro não encontrado
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
             try {
                 Quarto quarto;

@@ -25,7 +25,7 @@ public class InserirQuartoAction implements Action {
         String tipo = request.getParameter("textTipo");
 
         if (descricao.equals("") || tipo.equals("")) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
 
             Quarto quarto = null;
