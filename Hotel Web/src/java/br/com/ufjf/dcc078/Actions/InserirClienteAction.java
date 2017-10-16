@@ -8,10 +8,6 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Desenvolvedor
- */
 public class InserirClienteAction implements Action {
 
     @Override
@@ -20,12 +16,10 @@ public class InserirClienteAction implements Action {
         String cpf = request.getParameter("textCPF");
         String endereco = request.getParameter("textEndereco");
 
-        if (nome.equals("") || cpf.equals("")) {
-            response.sendRedirect("index.jsp");  //????????
+        if (nome.equals("")) {
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
-
             PessoaCliente pessoa = new PessoaCliente(nome, cpf, endereco);
-
             try {
                 PessoaDAO.getInstance().gravar(pessoa);
                 response.sendRedirect("MensagemSucesso.jsp");

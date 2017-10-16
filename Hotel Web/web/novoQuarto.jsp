@@ -14,25 +14,24 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=InserirQuarto" method="post" onsubmit="return novoQuarto();">
+        <form action="FrontController?action=InserirQuarto" method="post">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Descrição</label>
-                        <input type="text" id="txtDescricao" name="textDescricao" class="form-control" />
+                        <input type="text" id="txtDescricao" name="textDescricao" class="form-control" required=""/>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Tipo de Quarto</label>
-                        <select id="txtTipo" name="textTipo" class="form-control">
+                        <select id="txtTipo" name="textTipo" class="form-control" required="">
                             <option value="">Selecionar</option>
                             <option value="1">Casal</option>
                             <option value="2">Solteiro</option>
                             <option value="3">Dulpo</option>
                             <option value="4">Família</option>
                         </select>
-
                     </div>
                 </div>
             </div>

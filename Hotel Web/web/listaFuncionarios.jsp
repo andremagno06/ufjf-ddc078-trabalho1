@@ -12,19 +12,16 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>FUNCIONARIO</h2>   
+                <h2>FUNCIONÁRIO</h2>   
             </div>
         </div>            
         <hr/>
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                 <a href="FrontController?action=FuncionarioExibirInserir" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar Funcionario</a>
+                <a href="FrontController?action=FuncionarioExibirInserir" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar Funcionário</a>
             </div>
         </div>
         <hr/>
-
-        <%-- MOSTRAR TODOS OS CLIENTES EXISTENTES --%>
-
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -36,16 +33,16 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var="pessoas" items="${pessoas}">
-                <tr>
-                    <td class="text-center"><c:out value="${pessoas.id}"/></td>
-                <td><c:out value="${pessoas.nome}"/></td>
-                <td><c:out value="${pessoas.cpf}"/></td>
-                <td><c:out value="${pessoas.endereco}"/></td>
-                <td><c:out value="${pessoas.email}"/></td>
-                <td class="text-center"></td>
-            </c:forEach>    
-            </tr>
+                <c:forEach var="pessoas" items="${pessoas}">
+                    <tr>
+                        <td class="text-center"><c:out value="${pessoas.id}"/></td>
+                        <td><c:out value="${pessoas.nome}"/></td>
+                        <td><c:out value="${pessoas.cpf}"/></td>
+                        <td><c:out value="${pessoas.endereco}"/></td>
+                        <td><c:out value="${pessoas.email}"/></td>
+                        <td class="text-center"></td>
+                    </c:forEach>    
+                </tr>
             </tbody>
         </table>
     </div>

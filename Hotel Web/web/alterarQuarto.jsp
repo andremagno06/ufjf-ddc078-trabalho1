@@ -15,19 +15,19 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=AlterarQuarto" method="post" onsubmit="return alterarQuarto();">
+        <form action="FrontController?action=AlterarQuarto" method="post">
             <input type="hidden" name="txtId" value="${quarto.id}"/>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Descrição</label>
-                        <input type="text" id="txtDescricao" name="txtDescricao" class="form-control" value="${quarto.descricao}" />
+                        <input type="text" id="txtDescricao" name="txtDescricao" class="form-control" value="${quarto.descricao}" required=""/>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Tipo de Quarto</label>
-                        <select id="txtTipo" name="txtTipo" class="form-control">
+                        <select id="txtTipo" name="txtTipo" class="form-control" required="">
                             <option value="">Selecionar</option>
                             <option ${quarto.tipo_quarto_id == 1 ? "selected" :""} value="1">Casal</option>
                             <option ${quarto.tipo_quarto_id == 2 ? "selected" :""} value="2">Solteiro</option>
@@ -40,7 +40,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Estado</label>
-                        <select  id="txtEstado" name="txtEstado" class="form-control">
+                        <select  id="txtEstado" name="txtEstado" class="form-control" required="">
                             <option value="">Selecionar</option>
                             <option ${quarto.estado.sigla == "D" ? "selected" :""} value="D">Disponível</option>
                             <option ${quarto.estado.sigla == "O" ? "selected" :""} value="O">Ocupado</option>

@@ -18,12 +18,12 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=InserirReserva" method="post" onsubmit="return novaReserva();">
+        <form action="FrontController?action=InserirReserva" method="post">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Cliente</label>
-                        <select id="txtCliente" name="txtCliente" class="form-control">  
+                        <select id="txtCliente" name="txtCliente" class="form-control" required="">  
                             <option value="">Selecione</option>
                             <c:forEach var="clientes" items="${clientes}">
                                 <option value="${clientes.id}">${clientes.nome}</option>
@@ -34,7 +34,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Quarto</label>
-                        <select id="txtQuarto" name="txtQuarto" class="form-control">  
+                        <select id="txtQuarto" name="txtQuarto" class="form-control" required="">  
                             <option value="">Selecione</option>
                             <c:forEach var="quartos" items="${quartos}">
                                 <option value="${quartos.id}">${quartos.descricao}</option>
@@ -45,7 +45,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Data da Reserva</label>
-                        <input type="text" id="txtDataReserva" name="txtDataReserva" class="form-control" />
+                        <input type="text" id="txtDataReserva" name="txtDataReserva" class="form-control" required="" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
                     </div>
                 </div>
             </div>

@@ -17,50 +17,42 @@
             </div>
         </div>            
         <hr/>
-
-        <%--FORMULÁRIO PARA INCLUIR NOVO FUNCIONÁRIO--%>
-
-         <form action="FrontController?action=InserirFuncionario" method="post">
+        <form action="FrontController?action=InserirFuncionario" method="post">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" name="textNome" class="form-control" />
+                        <input type="text" name="textNome" class="form-control" required="" />
                     </div>
                 </div>
-                
-                 <div class="col-lg-4 col-md-4">
+
+                <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" name="textCPF" class="form-control" />
+                        <input type="text" name="textCPF" class="form-control"/>
                     </div>
                 </div>
-                
-                 <div class="col-lg-4 col-md-4">
+
+                <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Endereço</label>
                         <input type="text" name="textEndereco" class="form-control" />
                     </div>
                 </div>
-        
-                <div class="col-lg-4 col-md-4">
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="txtNotificacao" name="txtNotificacao" value="S">Receber notificações de reserva no e-mail.</label>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5">
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" name="textEmail" class="form-control" />
+                        <input type="text" id="textEmail" name="textEmail" class="form-control" disabled required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
                     </div>
                 </div>
             </div>
-              <div class="col-lg-4 col-md-4">
-                    <div class="form-group">
-                        <label>Quarto</label>
-                        <select id="txtQuarto" name="txtQuarto" class="form-control">  
-                            <option value="">Selecione</option>
-                            <c:forEach var="quartos" items="${quartos}">
-                                <option value="${quartos.id}">${quartos.descricao}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div>
             <hr/>
             <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
         </form>

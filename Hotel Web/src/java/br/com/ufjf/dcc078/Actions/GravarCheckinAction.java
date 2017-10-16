@@ -8,8 +8,6 @@ import br.com.ufjf.dcc078.Modelo.QuartoEstado;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +21,7 @@ public class GravarCheckinAction implements Action {
         String checkin = request.getParameter("txtDataCheckin");
 
         if (id.equals("") || checkin.equals("")) {
-            response.sendRedirect("index.php"); //Registro não encontrado
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));

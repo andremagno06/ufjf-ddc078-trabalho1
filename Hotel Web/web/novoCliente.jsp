@@ -15,28 +15,25 @@
             </div>
         </div>            
         <hr/>
-
-        <%--FORMULÁRIO PARA INCLUIR NOVO FUNCIONÁRIO--%>
-
         <form action="FrontController?action=InserirCliente" method="post">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" name="textNome" class="form-control" />
+                        <input type="text" id="textNome" name="textNome" class="form-control" required="" />
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" name="textCPF" class="form-control" />
+                        <input type="text" id="textCPF" name="textCPF" class="form-control" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Endereço</label>
-                        <input type="text" name="textEndereco" class="form-control" />
+                        <input type="text" id="textEndereco" name="textEndereco" class="form-control" />
                     </div>
                 </div>
             </div>

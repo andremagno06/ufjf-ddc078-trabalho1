@@ -18,7 +18,7 @@
             </div>
         </div>            
         <hr/>
-        <form action="FrontController?action=GravarCheckin" method="post" onsubmit="return alterarReservaCheckin()">
+        <form action="FrontController?action=GravarCheckin" method="post">
             <input type="hidden" name="txtId" value="${reserva.id}"/>
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -44,7 +44,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>Data de Checkin</label>
-                        <input type="text" id="txtDataCheckin" name="txtDataCheckin" class="form-control" />
+                        <input type="text" id="txtDataCheckin" name="txtDataCheckin" class="form-control" required="" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
                     </div>
                 </div>
             </div>

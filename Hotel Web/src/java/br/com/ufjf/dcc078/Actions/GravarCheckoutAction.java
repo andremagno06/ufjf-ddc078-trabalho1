@@ -25,7 +25,7 @@ public class GravarCheckoutAction implements Action {
         String checkout = request.getParameter("txtDataCheckout");
 
         if (id.equals("") || checkout.equals("")) {
-            response.sendRedirect("index.php"); //Registro não encontrado
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));

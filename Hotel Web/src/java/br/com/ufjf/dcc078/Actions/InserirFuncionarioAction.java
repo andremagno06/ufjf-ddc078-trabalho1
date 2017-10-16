@@ -26,11 +26,10 @@ public class InserirFuncionarioAction implements Action {
         String idQuarto = request.getParameter("txtQuarto");
 
         if (nome.equals("") || cpf.equals("")) {
-            response.sendRedirect("Index.jsp");   //???????????
+            response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
 
             try {
-
                 Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(idQuarto));
 
                 PessoaFuncionario pessoa = new PessoaFuncionario(nome, cpf, endereco, "F", email, quarto);
