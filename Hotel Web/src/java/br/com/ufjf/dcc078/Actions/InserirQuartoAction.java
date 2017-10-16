@@ -29,19 +29,19 @@ public class InserirQuartoAction implements Action {
         } else {
 
             Quarto quarto = null;
-           
-            switch(Integer.parseInt(tipo)){
+
+            switch (Integer.parseInt(tipo)) {
                 case 1:
-                    quarto =new QuartoCasal(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                    quarto = new QuartoCasal(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
                     break;
                 case 2:
-                    quarto =new QuartoSolteiro(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                    quarto = new QuartoSolteiro(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
                     break;
                 case 3:
-                    quarto =new QuartoDuplo(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                    quarto = new QuartoDuplo(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
                     break;
-                case 4:   
-                    quarto =new QuartoFamilia(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                case 4:
+                    quarto = new QuartoFamilia(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
                     break;
             }
             try {

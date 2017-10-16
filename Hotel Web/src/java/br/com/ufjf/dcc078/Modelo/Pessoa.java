@@ -1,42 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.dcc078.Modelo;
 
-/**
- *
- * @author Davi
- */
-public class Pessoa {
- 
-    private int id;
-    private String nome;
-    private String cpf;
-    private String endereco;
-    private String tipo_pessoa;
-    private String email;
+public abstract class Pessoa {
+
+    protected int id;
+    protected String nome;
+    protected String cpf;
+    protected String endereco;
+    protected String email;
 
     public Pessoa() {
     }
 
-    public Pessoa(int id, String nome, String cpf, String endereco, String tipo_pessoa, String email) {
+    public Pessoa(int id, String nome, String cpf, String endereco, String email) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
-        this.tipo_pessoa = tipo_pessoa;
         this.email = email;
-    } 
+    }
 
-    public Pessoa(String nome, String cpf, String endereco, String tipo_pessoa, String email) {
+    public Pessoa(String nome, String cpf, String endereco, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
-        this.tipo_pessoa = tipo_pessoa;
         this.email = email;
     }
+
+    abstract public String getTipo();
 
     public int getId() {
         return id;
@@ -70,14 +60,6 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public String getTipo_pessoa() {
-        return tipo_pessoa;
-    }
-
-    public void setTipo_pessoa(String tipo_pessoa) {
-        this.tipo_pessoa = tipo_pessoa;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -85,8 +67,4 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
-    
 }

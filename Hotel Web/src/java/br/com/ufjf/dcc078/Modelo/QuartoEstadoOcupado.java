@@ -19,12 +19,12 @@ public class QuartoEstadoOcupado implements QuartoEstado {
 
     @Override
     public void disponibilizar(Quarto quarto) {
-        throw new UnsupportedOperationException("Quarto ocupado.");
+        throw new UnsupportedOperationException("Quarto não disponçivel, pois se encontra ocupado.");
     }
 
     @Override
     public void ocupar(Quarto quarto) {
-        throw new UnsupportedOperationException("Quarto ocupado.");
+        throw new UnsupportedOperationException("Quarto já se encontra ocupado.");
     }
 
     @Override

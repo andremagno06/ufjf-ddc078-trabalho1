@@ -40,7 +40,7 @@ public class QuartoDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
             st.execute("insert into quarto (descricao,estado,tipo_quarto_id)"
-                    + " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado().getNome() + "', '" + quarto.getTipo_quarto_id() + "')");
+                    + " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado().getSigla()+ "', '" + quarto.getTipo_quarto_id() + "')");
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -70,7 +70,7 @@ public class QuartoDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
             st.execute("UPDATE quarto "
-                    + " SET descricao = '" + quarto.getDescricao()+ "', tipo_quarto_id =" + quarto.getTipo_quarto_id() + ", estado = '" + quarto.getEstado().getNome() + "' "
+                    + " SET descricao = '" + quarto.getDescricao() + "', tipo_quarto_id =" + quarto.getTipo_quarto_id() + ", estado = '" + quarto.getEstado().getSigla()+ "' "
                     + "WHERE id = " + quarto.getId());
         } catch (SQLException e) {
             throw e;
@@ -89,34 +89,34 @@ public class QuartoDAO {
             st = conn.prepareStatement("SELECT * FROM quarto WHERE id = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
-            
+
             if (rs.next()) {
-                
-            switch(rs.getInt("tipo_quarto_id")){
-                case 1:
-                    quarto =new QuartoCasal();
-                    break;
-                case 2:
-                    quarto =new QuartoSolteiro();
-                    break;
-                case 3:
-                    quarto =new QuartoDuplo();
-                    break;
-                case 4:   
-                    quarto =new QuartoFamilia();
-                    break;
-            }
+
+                switch (rs.getInt("tipo_quarto_id")) {
+                    case 1:
+                        quarto = new QuartoCasal();
+                        break;
+                    case 2:
+                        quarto = new QuartoSolteiro();
+                        break;
+                    case 3:
+                        quarto = new QuartoDuplo();
+                        break;
+                    case 4:
+                        quarto = new QuartoFamilia();
+                        break;
+                }
                 quarto.setId(rs.getInt("id"));
                 quarto.setDescricao(rs.getString("descricao"));
                 //tratando os estados do quarto 
                 switch (rs.getString("estado")) {
-                    case "Ocupado":
+                    case "O":
                         quarto.setEstado(new QuartoEstadoOcupado());
                         break;
-                    case "Manutenção":
+                    case "M":
                         quarto.setEstado(new QuartoEstadoManutencao());
                         break;
-                    case "Limpeza":
+                    case "L":
                         quarto.setEstado(new QuartoEstadoLimpeza());
                         break;
                     default:
@@ -144,33 +144,33 @@ public class QuartoDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.prepareStatement("SELECT * FROM quarto");
             rs = st.executeQuery();
-            
+
             while (rs.next()) {
-                
-            switch(rs.getInt("tipo_quarto_id")){
-                case 1:
-                    quarto =new QuartoCasal();
-                    break;
-                case 2:
-                    quarto =new QuartoSolteiro();
-                    break;
-                case 3:
-                    quarto =new QuartoDuplo();
-                    break;
-                case 4:   
-                    quarto =new QuartoFamilia();
-                    break;
-            }
+
+                switch (rs.getInt("tipo_quarto_id")) {
+                    case 1:
+                        quarto = new QuartoCasal();
+                        break;
+                    case 2:
+                        quarto = new QuartoSolteiro();
+                        break;
+                    case 3:
+                        quarto = new QuartoDuplo();
+                        break;
+                    case 4:
+                        quarto = new QuartoFamilia();
+                        break;
+                }
                 quarto.setId(rs.getInt("id"));
                 quarto.setDescricao(rs.getString("descricao"));
                 switch (rs.getString("estado")) {
-                    case "Ocupado":
+                    case "O":
                         quarto.setEstado(new QuartoEstadoOcupado());
                         break;
-                    case "Manutenção":
+                    case "M":
                         quarto.setEstado(new QuartoEstadoManutencao());
                         break;
-                    case "Limpeza":
+                    case "L":
                         quarto.setEstado(new QuartoEstadoLimpeza());
                         break;
                     default:

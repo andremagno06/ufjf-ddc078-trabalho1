@@ -12,10 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Desenvolvedor
- */
 public class PessoaDAO {
 
     private static PessoaDAO instance;
@@ -49,8 +45,6 @@ public class PessoaDAO {
                 cliente.setNome(rs.getString("nome"));
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setEndereco(rs.getString("endereco"));
-                System.out.println(rs.getString("tipo_pessoa").charAt(0));
-                cliente.setTipo_pessoa(rs.getString("tipo_pessoa"));
                 cliente.setEmail(rs.getString("email"));
                 clientes.add(cliente);
             }
@@ -81,8 +75,6 @@ public class PessoaDAO {
                 funcionario.setNome(rs.getString("nome"));
                 funcionario.setCpf(rs.getString("cpf"));
                 funcionario.setEndereco(rs.getString("endereco"));
-                System.out.println(rs.getString("tipo_pessoa").charAt(0));
-                funcionario.setTipo_pessoa(rs.getString("tipo_pessoa"));
                 funcionario.setEmail(rs.getString("email"));
                 funcionarios.add(funcionario);
             }
@@ -104,7 +96,7 @@ public class PessoaDAO {
             st = conn.createStatement();
             st.execute("insert into pessoa (nome,cpf, endereco, tipo_pessoa, email)"
                     + " values ('" + pessoa.getNome() + "', '" + pessoa.getCpf() + "', '"
-                    + pessoa.getEndereco() + "', '" + pessoa.getTipo_pessoa() + "','"
+                    + pessoa.getEndereco() + "', '" + pessoa.getTipo() + "','"
                     + pessoa.getEmail() + "')");
         } catch (SQLException e) {
             throw e;
@@ -127,7 +119,7 @@ public class PessoaDAO {
             closeResources(conn, st);
         }
     }
-    
+
     public Pessoa ler(int id) throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement st = null;
@@ -141,9 +133,9 @@ public class PessoaDAO {
 
             if (rs.next()) {
                 if (rs.getString("tipo_pessoa").equals("F")) {
-                    pessoa = new PessoaFuncionario(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "F", rs.getString("email"),null);
+                    pessoa = new PessoaFuncionario(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("email"));
                 } else {
-                    pessoa = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), "C");
+                    pessoa = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"));
                 }
             }
             return pessoa;

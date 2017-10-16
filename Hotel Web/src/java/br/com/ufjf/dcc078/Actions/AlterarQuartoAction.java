@@ -13,6 +13,8 @@ import br.com.ufjf.dcc078.Modelo.QuartoFamilia;
 import br.com.ufjf.dcc078.Modelo.QuartoSolteiro;
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,7 +36,7 @@ public class AlterarQuartoAction implements Action {
             response.sendRedirect("index.php"); //Registro não encontrado
         } else {
             try {
-                Quarto quarto = null;
+                Quarto quarto;
 
                 switch (Integer.parseInt(tipo)) {
                     case 1:
@@ -49,20 +51,23 @@ public class AlterarQuartoAction implements Action {
                     case 4:
                         quarto = new QuartoFamilia(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
                         break;
+                    default:
+                        quarto = new QuartoCasal(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));
+                        break;
                 }
-                quarto.setId(Integer.parseInt(id));
+                quarto.setDescricao(descricao);
                 switch (estado) {
                     case "O":
-                        quarto.setEstado(new QuartoEstadoOcupado());
+                        quarto.getEstado().ocupar(quarto);
                         break;
                     case "M":
-                        quarto.setEstado(new QuartoEstadoManutencao());
+                        quarto.getEstado().manutencao(quarto);
                         break;
                     case "L":
-                        quarto.setEstado(new QuartoEstadoLimpeza());
+                        quarto.getEstado().limpar(quarto);
                         break;
                     default:
-                        quarto.setEstado(new QuartoEstadoDisponivel());
+                        quarto.getEstado().disponibilizar(quarto);
                         break;
                 }
 
@@ -70,6 +75,14 @@ public class AlterarQuartoAction implements Action {
                 response.sendRedirect("MensagemSucesso.jsp");
             } catch (ClassNotFoundException | SQLException ex) {
                 response.sendRedirect("MensagemErro.jsp");
+            } catch (UnsupportedOperationException e) {
+                try {
+                    request.setAttribute("mensagem", e.getMessage());
+                    RequestDispatcher view = request.getRequestDispatcher("MensagemErroEstadoQuarto.jsp");
+                    view.forward(request, response);
+                } catch (ServletException ex) {
+                    response.sendRedirect("MensagemErro.jsp");
+                }
             }
 
         }

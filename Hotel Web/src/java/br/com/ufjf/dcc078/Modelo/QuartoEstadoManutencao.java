@@ -19,12 +19,12 @@ public class QuartoEstadoManutencao implements QuartoEstado {
 
     @Override
     public void disponibilizar(Quarto quarto) {
-        throw new UnsupportedOperationException("Quarto em manutenção.");
+       quarto.setEstado(new QuartoEstadoDisponivel());
     }
 
     @Override
     public void ocupar(Quarto quarto) {
-        throw new UnsupportedOperationException("Quarto em manutenção.");
+        throw new UnsupportedOperationException("Quarto não pode ser ocupado, pois está em manutenção.");
     }
 
     @Override
