@@ -21,6 +21,10 @@ public class PessoaFuncionario extends Pessoa implements Observer {
         super(nome, cpf, endereco, email);
     }
 
+    public PessoaFuncionario(String nome, String cpf, String endereco, String f, String email, Quarto quarto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public String getTipo() {
         return "F";
