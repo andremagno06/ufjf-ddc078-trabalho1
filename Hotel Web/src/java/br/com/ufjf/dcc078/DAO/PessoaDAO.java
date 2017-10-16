@@ -76,6 +76,7 @@ public class PessoaDAO {
                 funcionario.setCpf(rs.getString("cpf"));
                 funcionario.setEndereco(rs.getString("endereco"));
                 funcionario.setEmail(rs.getString("email"));
+                funcionario.setRecebeNotificacao(rs.getString("recebeNotificacao"));
                 funcionarios.add(funcionario);
             }
         } catch (SQLException e) {
@@ -94,10 +95,18 @@ public class PessoaDAO {
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            st.execute("insert into pessoa (nome,cpf, endereco, tipo_pessoa, email)"
-                    + " values ('" + pessoa.getNome() + "', '" + pessoa.getCpf() + "', '"
-                    + pessoa.getEndereco() + "', '" + pessoa.getTipo() + "','"
-                    + pessoa.getEmail() + "')");
+            if (pessoa instanceof PessoaFuncionario) {
+                st.execute("insert into pessoa (nome,cpf, endereco, tipo_pessoa, email, recebeNotificacao)"
+                        + " values ('" + pessoa.getNome() + "', '" + pessoa.getCpf() + "', '"
+                        + pessoa.getEndereco() + "', '" + pessoa.getTipo() + "','"
+                        + pessoa.getEmail() + "','" + pessoa.getRecebeNotificacao() + "')");
+            } else {
+                st.execute("insert into pessoa (nome,cpf, endereco, tipo_pessoa, email)"
+                        + " values ('" + pessoa.getNome() + "', '" + pessoa.getCpf() + "', '"
+                        + pessoa.getEndereco() + "', '" + pessoa.getTipo() + "','"
+                        + pessoa.getEmail() + "')");
+            }
+
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -134,6 +143,7 @@ public class PessoaDAO {
             if (rs.next()) {
                 if (rs.getString("tipo_pessoa").equals("F")) {
                     pessoa = new PessoaFuncionario(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("email"));
+                    pessoa.setRecebeNotificacao(rs.getString("recebeNotificacao"));
                 } else {
                     pessoa = new PessoaCliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"));
                 }

@@ -22,19 +22,33 @@ public class InserirFuncionarioAction implements Action {
         String nome = request.getParameter("textNome");
         String cpf = request.getParameter("textCPF");
         String endereco = request.getParameter("textEndereco");
-        String email = request.getParameter("textEmail");
-        String idQuarto = request.getParameter("txtQuarto");
+       
+        String notificacao = null;
+        if (request.getParameter("txtNotificacao") != null) {
+            notificacao = "S";
+        } else {
+            notificacao = "N";
+        }
+        String email = "";
+        if (notificacao.equals("S")) {
+            email = request.getParameter("textEmail");
+        }
 
-        if (nome.equals("") || cpf.equals("")) {
+        if (nome.equals("")) {
             response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
 
             try {
-                Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(idQuarto));
+                //Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(idQuarto));
 
-                PessoaFuncionario pessoa = new PessoaFuncionario(nome, cpf, endereco, "F", email, quarto);
-                quarto.addEnvolvido((Observer) pessoa);
+                PessoaFuncionario pessoa = new PessoaFuncionario(nome, cpf, endereco, email);
+                if (notificacao.equals("S")) {
+                    pessoa.setRecebeNotificacao("S");
+                } else {
+                    pessoa.setRecebeNotificacao("N");
+                }
 
+                //quarto.addEnvolvido((Observer) pessoa);
                 PessoaDAO.getInstance().gravar(pessoa);
 
                 response.sendRedirect("MensagemSucesso.jsp");

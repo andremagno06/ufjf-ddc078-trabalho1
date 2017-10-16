@@ -1,9 +1,9 @@
 $(document).ready(function (e) {
     $("#txtNotificacao").click(function (e) {
         if ($(this).is(':checked'))
-           $('#textEmail').removeAttr('disabled');
+            $('#textEmail').removeAttr('disabled');
         else
-          $('#textEmail').attr('disabled', 'disabled');
+            $('#textEmail').attr('disabled', 'disabled');
     });
 });
 
@@ -21,13 +21,14 @@ function fazerCheckin(data, url) {
     }
 }
 
-function fazerCheckout(checkin, data, url) {
-    if (checkin == ''){
+function fazerCheckout(checkin, checkout, url) {
+    if (checkin == '') {
         alert('Realizar primeiro o checkin.');
-    }
-    if (data == '') {
-        window.location = url;
-    } else {
+    } else if (checkout != '') {
         alert("Checkout já foi realizado.");
+    } else {
+        window.location = url;
+
     }
+
 }

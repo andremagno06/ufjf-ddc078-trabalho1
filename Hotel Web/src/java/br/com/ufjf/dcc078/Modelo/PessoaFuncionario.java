@@ -7,10 +7,16 @@ import java.util.Observer;
 
 public class PessoaFuncionario extends Pessoa implements Observer {
 
-    private QuartoEstado novoEstado;
+    private Observable reserva;
     private List<String> lista = new ArrayList<>();
 
     public PessoaFuncionario() {
+
+    }
+
+    public PessoaFuncionario(Observable reserva) {
+        this.reserva = reserva;
+        reserva.addObserver(this);
     }
 
     public PessoaFuncionario(int id, String nome, String cpf, String endereco, String email) {
@@ -21,34 +27,22 @@ public class PessoaFuncionario extends Pessoa implements Observer {
         super(nome, cpf, endereco, email);
     }
 
-    public PessoaFuncionario(String nome, String cpf, String endereco, String f, String email, Quarto quarto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public String getTipo() {
         return "F";
     }
-
-    public QuartoEstado getNovoEstado() {
-        return novoEstado;
+    
+    public List<String> getLista() {
+        return lista;
     }
 
     @Override
-    public void update(Observable quartoSubject, Object arg) {
-        if (quartoSubject instanceof Quarto) {
-
-            Quarto quarto = (Quarto) quartoSubject;
-            novoEstado = quarto.getEstado();
-            lista.add("Atenção " + getNome() + " o quarto " + quarto.getDescricao() + "esta com estado " + novoEstado.getNome());
-            System.out.println("Atenção" + getNome() + " o quarto " + quarto.getDescricao() + "esta com estado " + novoEstado.getNome());
+    public void update(Observable reservaSubjetc, Object arg) {
+        if (reservaSubjetc instanceof Reserva) {
+            Reserva reserva1 = (Reserva) reservaSubjetc;
+            String msg = "Checkout:" + reserva1.getData_checkout() + " - Status: " + reserva1.getQuarto().getEstado().getNome() + " - Quarto" + reserva1.getQuarto().getDescricao();
+            lista.add(msg);
         }
-    }
-
-    public List<String> Mensagemup() {
-        lista.add("Teste1");
-        lista.add("Teste2");
-        return lista;
     }
 
 }

@@ -7,6 +7,7 @@ public abstract class Pessoa {
     protected String cpf;
     protected String endereco;
     protected String email;
+    protected String recebeNotificacao;
 
     public Pessoa() {
     }
@@ -66,5 +67,13 @@ public abstract class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRecebeNotificacao() {
+        return recebeNotificacao;
+    }
+
+    public void setRecebeNotificacao(String recebeNotificacao) {
+        this.recebeNotificacao = recebeNotificacao;
     }
 }

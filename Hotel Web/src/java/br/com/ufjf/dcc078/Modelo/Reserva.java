@@ -1,8 +1,8 @@
 package br.com.ufjf.dcc078.Modelo;
 
-import br.com.ufjf.dcc078.DAO.QuartoDAO;
+import java.util.Observable;
 
-public class Reserva {
+public class Reserva extends Observable {
 
     private int id;
     private Pessoa cliente;
@@ -38,7 +38,7 @@ public class Reserva {
 
     public Quarto getQuarto() {
         return quarto;
-        
+
     }
 
     public void setQuarto(Quarto quarto) {
@@ -59,6 +59,8 @@ public class Reserva {
 
     public void setData_checkout(String data_checkout) {
         this.data_checkout = data_checkout;
+        setChanged();
+        notifyObservers();
     }
 
     public String getData_reserva() {
