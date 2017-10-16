@@ -7,6 +7,7 @@ import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Observer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
