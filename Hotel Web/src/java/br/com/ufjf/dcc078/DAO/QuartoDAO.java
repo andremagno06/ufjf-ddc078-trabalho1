@@ -7,6 +7,7 @@ import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoLimpeza;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoManutencao;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoOcupado;
+import br.com.ufjf.dcc078.Modelo.QuartoEstadoReservado;
 import br.com.ufjf.dcc078.Modelo.QuartoFamilia;
 import br.com.ufjf.dcc078.Modelo.QuartoSolteiro;
 import br.com.ufjf.dcc078.persistencia.DatabaseLocator;
@@ -40,7 +41,7 @@ public class QuartoDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
             st.execute("insert into quarto (descricao,estado,tipo_quarto_id)"
-                    + " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado().getSigla()+ "', '" + quarto.getTipo_quarto_id() + "')");
+                    + " values ('" + quarto.getDescricao() + "', '" + quarto.getEstado().getSigla() + "', '" + quarto.getTipo_quarto_id() + "')");
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -70,7 +71,7 @@ public class QuartoDAO {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
             st.execute("UPDATE quarto "
-                    + " SET descricao = '" + quarto.getDescricao() + "', tipo_quarto_id =" + quarto.getTipo_quarto_id() + ", estado = '" + quarto.getEstado().getSigla()+ "' "
+                    + " SET descricao = '" + quarto.getDescricao() + "', tipo_quarto_id =" + quarto.getTipo_quarto_id() + ", estado = '" + quarto.getEstado().getSigla() + "' "
                     + "WHERE id = " + quarto.getId());
         } catch (SQLException e) {
             throw e;
@@ -118,6 +119,9 @@ public class QuartoDAO {
                         break;
                     case "L":
                         quarto.setEstado(new QuartoEstadoLimpeza());
+                        break;
+                    case "R":
+                        quarto.setEstado(new QuartoEstadoReservado());
                         break;
                     default:
                         quarto.setEstado(new QuartoEstadoDisponivel());
@@ -172,6 +176,9 @@ public class QuartoDAO {
                         break;
                     case "L":
                         quarto.setEstado(new QuartoEstadoLimpeza());
+                        break;
+                    case "R":
+                        quarto.setEstado(new QuartoEstadoReservado());
                         break;
                     default:
                         quarto.setEstado(new QuartoEstadoDisponivel());

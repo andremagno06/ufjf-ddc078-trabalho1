@@ -37,4 +37,9 @@ public class QuartoEstadoOcupado implements QuartoEstado {
         quarto.setEstado(new QuartoEstadoManutencao());
     }
 
+    @Override
+    public void reservar(Quarto quarto) {
+        throw new UnsupportedOperationException("Quarto está ocupado e não pode ser reservado.");
+    }
+
 }

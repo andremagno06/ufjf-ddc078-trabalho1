@@ -13,10 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Desenvolvedor
- */
 public class InserirReservaComboAction implements Action {
 
     @Override

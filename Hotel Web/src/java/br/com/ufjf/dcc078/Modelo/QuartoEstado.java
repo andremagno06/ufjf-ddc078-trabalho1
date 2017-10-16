@@ -18,4 +18,6 @@ public interface QuartoEstado {
     public void limpar(Quarto quarto);
 
     public void manutencao(Quarto quarto);
+    
+    public void reservar(Quarto quarto);
 }

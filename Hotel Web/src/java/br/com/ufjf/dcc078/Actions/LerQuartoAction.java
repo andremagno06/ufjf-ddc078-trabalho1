@@ -10,10 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 07228620674
- */
 public class LerQuartoAction implements Action {
 
     @Override

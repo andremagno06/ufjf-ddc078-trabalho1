@@ -35,4 +35,9 @@ public class QuartoEstadoLimpeza implements QuartoEstado {
     public void manutencao(Quarto quarto) {
         quarto.setEstado(new QuartoEstadoManutencao());
     }
+
+    @Override
+    public void reservar(Quarto quarto) {
+        throw new UnsupportedOperationException("Quarto está em limpeza e não pode ser reservado "); //To change body of generated methods, choose Tools | Templates.
+    }
 }

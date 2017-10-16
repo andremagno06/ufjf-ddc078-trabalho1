@@ -37,4 +37,9 @@ public class QuartoEstadoManutencao implements QuartoEstado {
         quarto.setEstado(this);
     }
 
+    @Override
+    public void reservar(Quarto quarto) {
+        throw new UnsupportedOperationException("Quarto está em manutenção e não pode ser reservado."); 
+    }
+
 }

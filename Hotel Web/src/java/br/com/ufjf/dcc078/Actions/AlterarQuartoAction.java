@@ -63,6 +63,8 @@ public class AlterarQuartoAction implements Action {
                     case "L":
                         quarto.getEstado().limpar(quarto);
                         break;
+                    case "R":
+                        quarto.getEstado().reservar(quarto);
                     default:
                         quarto.getEstado().disponibilizar(quarto);
                         break;

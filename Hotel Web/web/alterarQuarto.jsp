@@ -46,6 +46,7 @@
                             <option ${quarto.estado.sigla == "O" ? "selected" :""} value="O">Ocupado</option>
                             <option ${quarto.estado.sigla == "L" ? "selected" :""} value="L">Limpeza</option>
                             <option ${quarto.estado.sigla == "M" ? "selected" :""} value="M">Manutenção</option>
+                            <option ${quarto.estado.sigla == "R" ? "selected" :""} value="M">Reservado</option>
                         </select>
                     </div>
                 </div>
