@@ -2,9 +2,12 @@ package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
 import br.com.ufjf.dcc078.DAO.PessoaDAO;
+import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
+import br.com.ufjf.dcc078.Modelo.Quarto;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Observer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,7 +35,9 @@ public class InserirFuncionarioAction implements Action {
         } else {
 
             try {
-                //Quarto quarto = QuartoDAO.getInstance().ler(Integer.parseInt(idQuarto));
+                
+                
+                
 
                 PessoaFuncionario pessoa = new PessoaFuncionario(nome, cpf, endereco, email);
                 if (notificacao.equals("S")) {
@@ -41,7 +46,8 @@ public class InserirFuncionarioAction implements Action {
                     pessoa.setRecebeNotificacao("N");
                 }
 
-                //quarto.addEnvolvido((Observer) pessoa);
+                 addEnvolvido((Observer) pessoa);
+                
                 PessoaDAO.getInstance().gravar(pessoa);
 
                 response.sendRedirect("MensagemSucesso.jsp");

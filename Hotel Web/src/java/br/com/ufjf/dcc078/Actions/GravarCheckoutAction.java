@@ -41,7 +41,10 @@ public class GravarCheckoutAction implements Action {
 
                 //mensagem para os funcionários
                 PessoaFuncionario p = new PessoaFuncionario();
-               // mensagem = p.Mensagemup();
+                
+                
+                
+                mensagem = p.Mensagemup();
                 request.setAttribute("mensagem", mensagem);
                 RequestDispatcher view = request.getRequestDispatcher("ObserverMensagem.jsp");
                 view.forward(request, response);

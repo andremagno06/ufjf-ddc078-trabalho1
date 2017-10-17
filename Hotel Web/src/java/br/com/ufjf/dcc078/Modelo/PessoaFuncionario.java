@@ -42,7 +42,13 @@ public class PessoaFuncionario extends Pessoa implements Observer {
             Reserva reserva1 = (Reserva) reservaSubjetc;
             String msg = "Checkout:" + reserva1.getData_checkout() + " - Status: " + reserva1.getQuarto().getEstado().getNome() + " - Quarto" + reserva1.getQuarto().getDescricao();
             lista.add(msg);
+            lista.add(msg);
         }
     }
+    
+   public List<String> Mensagemup(){
+       lista.add( "Checkout:  - Status: - Quarto Funcinario:");
+      return lista;
+   }
 
 }
