@@ -13,15 +13,7 @@ public abstract class Quarto extends Observable {
     protected String tipoQuarto;
     Promocao promocao;
     private List<Observer> envolvidosResponsaveisFuncionarios;
-
-    public QuartoMemento saveToMemento() {
-        return new QuartoMemento(estado);
-    }
-
-    public void restoreFromMemento(QuartoMemento memento) {
-        estado = memento.getEstadoSalvo();
-    }
-
+    
     public Promocao getPromocao() {
         return promocao;
     }

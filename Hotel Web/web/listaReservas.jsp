@@ -48,7 +48,7 @@
                         <td>
                             <a href="javascript:fazerCheckin('${reservas.data_checkin}', 'FrontController?action=CheckinReserva&id=${reservas.id}');"><i class="fa fa-check-square fa-lg" aria-hidden="true"></i></a> &nbsp;
                             <a href="javascript:fazerCheckout('${reservas.data_checkin}','${reservas.data_checkout}', 'FrontController?action=CheckoutReserva&id=${reservas.id}');"><i class="fa  fa-sign-out fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
-                            <a href="FrontController?action=Desfazer&id=${reservas.id}"><i class="fa  fa-sign-out fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
+                            <a href="FrontController?action=DesfazerCheckin&id=${reservas.id}"><i class="fa  fa-sign-out fa-lg" style="color:#a94442;" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </c:forEach>    

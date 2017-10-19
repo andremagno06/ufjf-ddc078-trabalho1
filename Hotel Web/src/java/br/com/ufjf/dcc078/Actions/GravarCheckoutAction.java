@@ -1,23 +1,21 @@
 package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
-import br.com.ufjf.dcc078.DAO.HistoricoMementoDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
+import br.com.ufjf.dcc078.Memento.QuartoCareTaker;
 import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
-import br.com.ufjf.dcc078.Modelo.QuartoMemento;
+import br.com.ufjf.dcc078.Memento.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class GravarCheckoutAction implements Action {
 
@@ -25,10 +23,6 @@ public class GravarCheckoutAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        HttpSession sessao = request.getSession();
-        ArrayList<QuartoMemento> historicos = (ArrayList<QuartoMemento>) sessao.getAttribute("historico");
-
         String id = request.getParameter("txtId");
         String checkout = request.getParameter("txtDataCheckout");
 
@@ -43,17 +37,14 @@ public class GravarCheckoutAction implements Action {
                 QuartoEstado estado = quarto.getEstado();
                 estado.limpar(quarto);
 
-               
-                // HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
-
                 //gravar as alterações no banco
                 ReservaDAO.getInstance().gravarCheckout(reserva);
                 QuartoDAO.getInstance().alterar(quarto);
-
-                    
-                 //Memento
-                historicos.add(new QuartoMemento(quarto.getEstado()));
                 
+                //salvar estados do banco para desfazer
+                QuartoMemento memento = new QuartoMemento(quarto.getId());
+                memento.addEstado(quarto.getEstado());
+                QuartoCareTaker.getInstance().adicionarMemento(memento);
                 
                 //mensagem para os funcionários
                 PessoaFuncionario p = new PessoaFuncionario();

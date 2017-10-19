@@ -1,32 +1,25 @@
 package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
-import br.com.ufjf.dcc078.DAO.HistoricoMementoDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
-import br.com.ufjf.dcc078.Modelo.HistoricoMemento;
+import br.com.ufjf.dcc078.Memento.QuartoCareTaker;
+import br.com.ufjf.dcc078.Memento.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
-import br.com.ufjf.dcc078.Modelo.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class GravarCheckinAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-     
-        HttpSession sessao = request.getSession();
-        ArrayList<QuartoMemento> historicos = (ArrayList<QuartoMemento>) sessao.getAttribute("historico");
-        
-        
+       
         String id = request.getParameter("txtId");
         String checkin = request.getParameter("txtDataCheckin");
 
@@ -41,16 +34,15 @@ public class GravarCheckinAction implements Action {
                 QuartoEstado estado = quarto.getEstado();
                 estado.ocupar(quarto);
                 
-               
-              //  HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
-
-                //fazer o checkin
                 reserva.setData_checkin(checkin);
                 ReservaDAO.getInstance().gravarCheckin(reserva);
                 QuartoDAO.getInstance().alterar(quarto); //gravar o estado do quarto alterado
                 
-                 //Memento
-                historicos.add(new QuartoMemento(quarto.getEstado()));
+               //salvar estados do banco para desfazer
+                QuartoMemento memento = new QuartoMemento(quarto.getId());
+                memento.addEstado(quarto.getEstado());
+                QuartoCareTaker.getInstance().adicionarMemento(memento);
+                
                 response.sendRedirect("MensagemSucesso.jsp");
 
             } catch (ClassNotFoundException | SQLException ex) {
