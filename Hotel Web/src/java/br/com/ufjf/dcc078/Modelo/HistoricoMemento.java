@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class HistoricoMemento {
     
     private int id;
-    private Quarto quarto;
+    private  Reserva reserva;
     private ArrayList<QuartoMemento> quartoMemento;
     private int ordem;
 
@@ -23,9 +23,9 @@ public class HistoricoMemento {
 
 
 
-    public HistoricoMemento(int id, Quarto quarto, ArrayList<QuartoMemento> quartoMemento, int ordem) {
+    public HistoricoMemento(int id, Reserva reserva, ArrayList<QuartoMemento> quartoMemento, int ordem) {
         this.id = id;
-        this.quarto = quarto;
+        this.reserva = reserva;
         this.quartoMemento = quartoMemento;
         this.ordem = ordem;
     }
@@ -41,13 +41,14 @@ public class HistoricoMemento {
         this.id = id;
     }
 
-    public Quarto getQuarto() {
-        return quarto;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 
-    public void setQuarto(Quarto quarto) {
-        this.quarto = quarto;
+    public Reserva getReserva() {
+        return reserva;
     }
+
 
     public ArrayList<QuartoMemento> getQuartoMemento() {
         return quartoMemento;

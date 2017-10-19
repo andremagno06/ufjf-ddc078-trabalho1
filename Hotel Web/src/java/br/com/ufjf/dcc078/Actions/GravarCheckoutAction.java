@@ -7,14 +7,17 @@ import br.com.ufjf.dcc078.DAO.ReservaDAO;
 import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
+import br.com.ufjf.dcc078.Modelo.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class GravarCheckoutAction implements Action {
 
@@ -22,6 +25,10 @@ public class GravarCheckoutAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        HttpSession sessao = request.getSession();
+        ArrayList<QuartoMemento> historicos = (ArrayList<QuartoMemento>) sessao.getAttribute("historico");
+
         String id = request.getParameter("txtId");
         String checkout = request.getParameter("txtDataCheckout");
 
@@ -35,20 +42,22 @@ public class GravarCheckoutAction implements Action {
                 Quarto quarto = reserva.getQuarto();
                 QuartoEstado estado = quarto.getEstado();
                 estado.limpar(quarto);
-                
-                //Memento
-                HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
-                
+
+               
+                // HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
 
                 //gravar as alterações no banco
                 ReservaDAO.getInstance().gravarCheckout(reserva);
                 QuartoDAO.getInstance().alterar(quarto);
 
+                    
+                 //Memento
+                historicos.add(new QuartoMemento(quarto.getEstado()));
+                
+                
                 //mensagem para os funcionários
                 PessoaFuncionario p = new PessoaFuncionario();
-                
-                
-                
+
                 mensagem = p.Mensagemup();
                 request.setAttribute("mensagem", mensagem);
                 RequestDispatcher view = request.getRequestDispatcher("ObserverMensagem.jsp");

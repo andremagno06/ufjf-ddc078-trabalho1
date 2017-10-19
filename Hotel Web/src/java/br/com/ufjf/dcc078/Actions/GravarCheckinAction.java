@@ -16,12 +16,17 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class GravarCheckinAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
      
+        HttpSession sessao = request.getSession();
+        ArrayList<QuartoMemento> historicos = (ArrayList<QuartoMemento>) sessao.getAttribute("historico");
+        
+        
         String id = request.getParameter("txtId");
         String checkin = request.getParameter("txtDataCheckin");
 
@@ -36,14 +41,16 @@ public class GravarCheckinAction implements Action {
                 QuartoEstado estado = quarto.getEstado();
                 estado.ocupar(quarto);
                 
-                //Memento
-                HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
+               
+              //  HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
 
                 //fazer o checkin
                 reserva.setData_checkin(checkin);
                 ReservaDAO.getInstance().gravarCheckin(reserva);
                 QuartoDAO.getInstance().alterar(quarto); //gravar o estado do quarto alterado
-
+                
+                 //Memento
+                historicos.add(new QuartoMemento(quarto.getEstado()));
                 response.sendRedirect("MensagemSucesso.jsp");
 
             } catch (ClassNotFoundException | SQLException ex) {

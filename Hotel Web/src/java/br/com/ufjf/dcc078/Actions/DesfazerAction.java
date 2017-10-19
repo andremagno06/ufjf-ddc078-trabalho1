@@ -16,12 +16,16 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class DesfazerAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
  
+         HttpSession sessao = request.getSession();
+        ArrayList<QuartoMemento> historicos = (ArrayList<QuartoMemento>) sessao.getAttribute("historico");
+        
         String id = request.getParameter("id");
         
 
@@ -33,7 +37,7 @@ public class DesfazerAction implements Action {
 
                 //alterar o estado do quarto
                 Quarto quarto = reserva.getQuarto();
-                QuartoEstado estado = quarto.getEstado();
+                quarto.setEstado(historicos.add());
                 estado=HistoricoMementoDAO.getInstance().getMomentoAnterio(quarto).getEstadoSalvo();
                 
                 //Memento
