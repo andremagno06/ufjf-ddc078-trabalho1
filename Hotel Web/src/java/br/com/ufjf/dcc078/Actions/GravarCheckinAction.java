@@ -1,8 +1,10 @@
 package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
+import br.com.ufjf.dcc078.DAO.HistoricoMementoDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
+import br.com.ufjf.dcc078.Modelo.HistoricoMemento;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
 import br.com.ufjf.dcc078.Modelo.QuartoMemento;
@@ -19,10 +21,7 @@ public class GravarCheckinAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       
-         ArrayList<QuartoMemento> estadoSalvos = new ArrayList();
-         
-         
+     
         String id = request.getParameter("txtId");
         String checkin = request.getParameter("txtDataCheckin");
 
@@ -36,6 +35,9 @@ public class GravarCheckinAction implements Action {
                 Quarto quarto = reserva.getQuarto();
                 QuartoEstado estado = quarto.getEstado();
                 estado.ocupar(quarto);
+                
+                //Memento
+                HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
 
                 //fazer o checkin
                 reserva.setData_checkin(checkin);

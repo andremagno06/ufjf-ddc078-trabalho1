@@ -1,9 +1,11 @@
 package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
+import br.com.ufjf.dcc078.DAO.HistoricoMementoDAO;
 import br.com.ufjf.dcc078.DAO.PessoaDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
+import br.com.ufjf.dcc078.Modelo.HistoricoMemento;
 import br.com.ufjf.dcc078.Modelo.Pessoa;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstadoDisponivel;
@@ -34,6 +36,9 @@ public class InserirReservaAction implements Action {
                 //alterar o estado do quarto
                 QuartoEstadoDisponivel disponivel = (QuartoEstadoDisponivel) quarto.getEstado();
                 disponivel.reservar(quarto);
+                //memento
+                HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
+                
                 QuartoDAO.getInstance().alterar(quarto);
                 response.sendRedirect("MensagemSucesso.jsp");
             } catch (ClassNotFoundException | SQLException ex) {

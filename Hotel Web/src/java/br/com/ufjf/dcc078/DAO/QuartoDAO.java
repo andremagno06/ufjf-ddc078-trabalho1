@@ -70,9 +70,10 @@ public class QuartoDAO {
         try {
             conn = DatabaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            st.execute("UPDATE quarto "
-                    + " SET descricao = '" + quarto.getDescricao() + "', tipo_quarto_id =" + quarto.getTipo_quarto_id() + ", estado = '" + quarto.getEstado().getSigla() + "' "
-                    + "WHERE id = " + quarto.getId());
+
+            String x = "UPDATE `quarto` SET `descricao` = '" + quarto.getDescricao() + "', `estado` = '" + quarto.getEstado().getSigla() + "', `tipo_quarto_id` = '" + quarto.getTipo_quarto_id() + "' WHERE `quarto`.`id` = " + quarto.getId();
+            st.execute(x);
+
         } catch (SQLException e) {
             throw e;
         } finally {

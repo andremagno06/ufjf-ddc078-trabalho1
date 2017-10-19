@@ -25,7 +25,7 @@ public class InserirQuartoAction implements Action {
         } else {
 
             Quarto quarto = null;
-
+          
             switch (Integer.parseInt(tipo)) {
                 case 1:
                     quarto = new QuartoCasal(descricao, new QuartoEstadoDisponivel(), Integer.parseInt(tipo));

@@ -4,57 +4,49 @@ import br.com.ufjf.dcc078.Controller.Action;
 import br.com.ufjf.dcc078.DAO.HistoricoMementoDAO;
 import br.com.ufjf.dcc078.DAO.QuartoDAO;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
-import br.com.ufjf.dcc078.Modelo.PessoaFuncionario;
+import br.com.ufjf.dcc078.Modelo.HistoricoMemento;
 import br.com.ufjf.dcc078.Modelo.Quarto;
 import br.com.ufjf.dcc078.Modelo.QuartoEstado;
+import br.com.ufjf.dcc078.Modelo.QuartoMemento;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GravarCheckoutAction implements Action {
-
-    private List<String> mensagem;
+public class DesfazerAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String id = request.getParameter("txtId");
-        String checkout = request.getParameter("txtDataCheckout");
+ 
+        String id = request.getParameter("id");
+        
 
-        if (id.equals("") || checkout.equals("")) {
+        if (id.equals("")) {
             response.sendRedirect("MensagemCamposObrigatorios.jsp");
         } else {
             try {
                 Reserva reserva = ReservaDAO.getInstance().ler(Integer.parseInt(id));
-                reserva.setData_checkout(checkout);
+
                 //alterar o estado do quarto
                 Quarto quarto = reserva.getQuarto();
                 QuartoEstado estado = quarto.getEstado();
-                estado.limpar(quarto);
+                estado=HistoricoMementoDAO.getInstance().getMomentoAnterio(quarto).getEstadoSalvo();
                 
                 //Memento
-                HistoricoMementoDAO.getInstance().addMemento(quarto, quarto.saveToMemento());
-                
+                quarto.setEstado(estado);
 
-                //gravar as alterações no banco
-                ReservaDAO.getInstance().gravarCheckout(reserva);
-                QuartoDAO.getInstance().alterar(quarto);
+                //fazer o checkin
+                reserva.setData_checkin("");
+                ReservaDAO.getInstance().gravarCheckin(reserva);
+                QuartoDAO.getInstance().alterar(quarto); //gravar o estado do quarto alterado
 
-                //mensagem para os funcionários
-                PessoaFuncionario p = new PessoaFuncionario();
-                
-                
-                
-                mensagem = p.Mensagemup();
-                request.setAttribute("mensagem", mensagem);
-                RequestDispatcher view = request.getRequestDispatcher("ObserverMensagem.jsp");
-                view.forward(request, response);
+                response.sendRedirect("MensagemSucesso.jsp");
 
-            } catch (ClassNotFoundException | ServletException | SQLException ex) {
+            } catch (ClassNotFoundException | SQLException ex) {
                 response.sendRedirect("MensagemErro.jsp");
             } catch (UnsupportedOperationException e) {
                 try {

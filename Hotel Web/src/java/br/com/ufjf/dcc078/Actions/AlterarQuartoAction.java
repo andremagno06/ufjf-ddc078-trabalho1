@@ -69,7 +69,7 @@ public class AlterarQuartoAction implements Action {
                         quarto.getEstado().disponibilizar(quarto);
                         break;
                 }
-
+               quarto.setId(Integer.parseInt(id));
                 QuartoDAO.getInstance().alterar(quarto);
                 response.sendRedirect("MensagemSucesso.jsp");
             } catch (ClassNotFoundException | SQLException ex) {

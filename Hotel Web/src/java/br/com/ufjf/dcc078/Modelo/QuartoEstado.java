@@ -14,6 +14,8 @@ public interface QuartoEstado {
     public void disponibilizar(Quarto quarto);
 
     public void ocupar(Quarto quarto);
+    
+    public void desfazer(Quarto quarto);
 
     public void limpar(Quarto quarto);
 

@@ -32,6 +32,11 @@ public class QuartoEstadoDisponivel implements QuartoEstado {
         quarto.setEstado(new QuartoEstadoLimpeza());
     }
 
+     @Override
+    public void desfazer(Quarto quarto) {
+        throw new UnsupportedOperationException("Ação desfeita");
+    }
+    
     @Override
     public void manutencao(Quarto quarto) {
         quarto.setEstado(new QuartoEstadoManutencao());

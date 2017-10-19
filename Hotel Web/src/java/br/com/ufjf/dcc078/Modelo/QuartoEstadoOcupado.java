@@ -26,7 +26,14 @@ public class QuartoEstadoOcupado implements QuartoEstado {
     public void ocupar(Quarto quarto) {
         throw new UnsupportedOperationException("Quarto já se encontra ocupado.");
     }
-
+   
+    @Override
+    public void desfazer(Quarto quarto) {
+        throw new UnsupportedOperationException("Ação desfeita");
+    }
+    
+ 
+    
     @Override
     public void limpar(Quarto quarto) {
         quarto.setEstado(new QuartoEstadoLimpeza());

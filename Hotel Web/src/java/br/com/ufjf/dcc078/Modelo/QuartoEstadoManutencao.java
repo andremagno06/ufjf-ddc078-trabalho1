@@ -27,6 +27,11 @@ public class QuartoEstadoManutencao implements QuartoEstado {
         throw new UnsupportedOperationException("Quarto não pode ser ocupado, pois está em manutenção.");
     }
 
+     @Override
+    public void desfazer(Quarto quarto) {
+        throw new UnsupportedOperationException("Ação desfeita");
+    }
+    
     @Override
     public void limpar(Quarto quarto) {
         quarto.setEstado(new QuartoEstadoLimpeza());

@@ -17,6 +17,11 @@ public class QuartoEstadoReservado implements QuartoEstado{
        quarto.setEstado(new QuartoEstadoDisponivel());
     }
 
+     @Override
+    public void desfazer(Quarto quarto) {
+        throw new UnsupportedOperationException("Ação desfeita");
+    }
+    
     @Override
     public void ocupar(Quarto quarto) {
         quarto.setEstado(new QuartoEstadoOcupado());

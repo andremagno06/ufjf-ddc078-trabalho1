@@ -46,7 +46,7 @@ public class InserirFuncionarioAction implements Action {
                     pessoa.setRecebeNotificacao("N");
                 }
 
-                 addEnvolvido((Observer) pessoa);
+                // addEnvolvido((Observer) pessoa);
                 
                 PessoaDAO.getInstance().gravar(pessoa);
 
