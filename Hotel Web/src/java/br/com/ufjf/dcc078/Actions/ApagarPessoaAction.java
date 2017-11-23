@@ -18,12 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 07228620674
- */
-public class ApagarPessoaAction implements Action{
 
+public class ApagarPessoaAction implements Action{
+    
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id = request.getParameter("textID");
@@ -32,12 +29,10 @@ public class ApagarPessoaAction implements Action{
             response.sendRedirect("index.jsp");
         }
         else{
-            try{
+            try{   
                 
                 PessoaDAO.getInstance().excluir(Integer.parseInt(id));
-                
-                request.setAttribute("nome", id);
-                
+                request.setAttribute("nome", id);   
                 RequestDispatcher view = request.getRequestDispatcher("PessoaExcluir.jsp");//<<<<<modificar>>>>>
                 view.forward(request, response);
                  response.sendRedirect("MensagemSucesso.jsp");

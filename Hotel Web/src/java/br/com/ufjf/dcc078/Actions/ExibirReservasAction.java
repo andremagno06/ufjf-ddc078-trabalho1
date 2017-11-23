@@ -2,7 +2,7 @@ package br.com.ufjf.dcc078.Actions;
 
 import br.com.ufjf.dcc078.Controller.Action;
 import br.com.ufjf.dcc078.DAO.ReservaDAO;
-import br.com.ufjf.dcc078.Modelo.Memento.QuartoCareTaker;
+import br.com.ufjf.dcc078.Memento.QuartoCareTaker;
 import br.com.ufjf.dcc078.Modelo.Reserva;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,11 +23,6 @@ public class ExibirReservasAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
        try {
-           
-           HttpSession sessao = request.getSession();
-           sessao.setAttribute("historico", QuartoCareTaker.getInstance().getEstados());
-           
-           
             List<Reserva> reservas = ReservaDAO.getInstance().lerTodos();
             request.setAttribute("reservas", reservas);
             RequestDispatcher view = request.getRequestDispatcher("listaReservas.jsp");

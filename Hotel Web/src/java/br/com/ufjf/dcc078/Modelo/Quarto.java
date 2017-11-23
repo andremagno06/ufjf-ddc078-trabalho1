@@ -1,5 +1,7 @@
 package br.com.ufjf.dcc078.Modelo;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,8 +14,15 @@ public abstract class Quarto extends Observable {
     private int tipo_quarto_id;
     protected String tipoQuarto;
     Promocao promocao;
-    private List<Observer> envolvidosResponsaveisFuncionarios;
-    
+    private List<Observer> envolvidos;
+
+    public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
+        this.descricao = descricao;
+        this.estado = estado;
+        this.tipo_quarto_id = tipo_quarto_id;
+        this.envolvidos = new ArrayList<>();
+    }
+
     public Promocao getPromocao() {
         return promocao;
     }
@@ -34,12 +43,6 @@ public abstract class Quarto extends Observable {
     }
 
     abstract public String tipoQuarto();
-
-    public Quarto(String descricao, QuartoEstado estado, int tipo_quarto_id) {
-        this.descricao = descricao;
-        this.estado = estado;
-        this.tipo_quarto_id = tipo_quarto_id;
-    }
 
     public Quarto(int id, String descricao, QuartoEstado estado, int tipo_quarto_id) {
         this.id = id;
@@ -82,6 +85,7 @@ public abstract class Quarto extends Observable {
     }
 
     public void addEnvolvido(Observer p) {
+        this.envolvidos.add(p);
         this.addObserver(p);
     }
 
@@ -89,6 +93,17 @@ public abstract class Quarto extends Observable {
         this.estado = novoEstado;
         setChanged();
         notifyObservers();
+    }
+
+    public List<Observer> getEnvolvidos() {
+        return envolvidos;
+    }
+
+    public void setEnvolvidos(List<Observer> envolvidos) {
+        this.envolvidos = envolvidos;
+        envolvidos.forEach((o) -> {
+            this.addObserver(o);
+        });
     }
 
 }
