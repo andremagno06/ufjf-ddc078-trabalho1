@@ -44,7 +44,7 @@ public class GravarCheckoutAction implements Action {
                 //salvar estados do banco para desfazer
                 QuartoMemento memento = new QuartoMemento(quarto.getId());
                 memento.addEstado(quarto.getEstado());
-                QuartoCareTaker.getInstance().adicionarMemento(memento);
+                //QuartoCareTaker.getInstance().adicionarMemento(memento);
                 
                 //mensagem para os funcionários
                 PessoaFuncionario p = new PessoaFuncionario();

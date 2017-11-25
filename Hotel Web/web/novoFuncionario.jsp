@@ -55,6 +55,17 @@
             </div>
             <hr/>
             <button class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+            
+            <div class="form-group">
+                <label>Quarto</label>
+                <select id="txtQuarto" name="txtQuarto" class="form-control" required="">  
+                    <option value="">Selecione</option>
+                    <c:forEach var="quartos" items="${quartos}">
+                        <option value="${quartos.id}">${quartos.descricao}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            
         </form>
     </div>
 </div>

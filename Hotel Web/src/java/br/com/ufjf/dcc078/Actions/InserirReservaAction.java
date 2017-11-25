@@ -40,7 +40,7 @@ public class InserirReservaAction implements Action {
                //salvar estados do banco para desfazer
                 QuartoMemento memento = new QuartoMemento(quarto.getId());
                 memento.addEstado(quarto.getEstado());
-                QuartoCareTaker.getInstance().adicionarMemento(memento);
+                //QuartoCareTaker.getInstance().adicionarMemento(memento);
                 
                 response.sendRedirect("MensagemSucesso.jsp");
             } catch (ClassNotFoundException | SQLException ex) {
